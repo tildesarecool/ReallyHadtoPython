@@ -1,0 +1,9 @@
+Python has concept of "truthy" and "fasley" like data types
+bool(0) is "falsey"
+
+0 and 0.0 are "falsey"
+
+Python visualizer looks like a good helper site
+https://pythontutor.com/visualize.html#mode=edit
+
+use sys.exit to super hard exit out program
