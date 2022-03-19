@@ -42,3 +42,11 @@ I'm not sure yet and how is relevant.
 The video does talk about "references" though 
 so it seems like a form pointer/past by reference. Or is literally that. 
 
+-----------
+
+the end of video 16 has a suggestion for a more extended video on references:
+https://www.youtube.com/watch?v=_AEJHKGk9ns
+
+pages 104 - 112
+dictionaries
+indexes for dictionaries are called keys
