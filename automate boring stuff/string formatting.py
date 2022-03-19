@@ -1,5 +1,5 @@
 # string formatting extras - using %s
-# lesson 22
+# lesson 21
 # making concatenating strings easier
 # interprolation?
 # %s are called conversion specifiers
