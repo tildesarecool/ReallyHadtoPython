@@ -7,3 +7,38 @@ Python visualizer looks like a good helper site
 https://pythontutor.com/visualize.html#mode=edit
 
 use sys.exit to super hard exit out program
+
+I got through the playlist on youtube and switched over to the playlist on udemy that I apparently paid for
+https://www.udemy.com/course/automate/learn/lecture/3465844
+
+The youtube playlist actually had identical videos to that of the first 6 sections of the udemy course
+so I'm starting on section 6 video 16 "similarities between lists and strings"
+
+I also switched from my (lenovo) laptop to my (alienware) main laptop 
+so I probably have to add 
+
+turns out section 6 video 16 "similarities between lists and strings" actually was in the youtube playlist
+I just didn't remember/realize
+I think i need to review it anyway
+
+name = 'Zophie a cat'
+newName = name[0:7] + 'the' + name[8:12]
+newName
+# oputput:
+'Zophie the cat'
+
+spam = [0, 1, 2, 3, 4, 5]
+cheese = spam
+cheese[1] = 'Hello'
+cheese
+#output:
+[0, 'Hello', 2, 3, 4, 5]
+
+
+immutable versus mutable values
+from what i can gather one can't have values modified in place
+and the other can
+I'm not sure yet and how is relevant. 
+The video does talk about "references" though 
+so it seems like a form pointer/past by reference. Or is literally that. 
+
