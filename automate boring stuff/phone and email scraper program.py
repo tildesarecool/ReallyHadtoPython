@@ -197,7 +197,7 @@ for phoneNumber in extractedPhone:
  # this will make one number per line
 #phoneResults = '\n'.join(allPhoneNumbers) + '\n' + '\n'.join(extractedemail) 
 #  
-allResults = ',\n'.join(allPhoneNumbers) + ',\n' + '\n'.join(extractedemail) 
+allResults = '\n'.join(allPhoneNumbers) + '\n' + '\n'.join(extractedemail) 
 pyperclip.copy(allResults)
 
 # hey! it works!
