@@ -133,19 +133,18 @@ phoneRegEx = re.compile(r'''
             # 415-444-0000
             # or
             # 555-0000 or (514) 444-0000 or 555-0000 ext 12345, 234,2334
-((\d\d\d) | (\(\d\d\d\)))?            # area code (optional) 
-(\s|-)            # frist separator
-\d\d\d            # first 3 digits
--                 # separator
-\d\d\d\d          # last 4 digits
-((ext(\.)?\s|x)   #word part (optional)
-(\d{2,5}))?            # extension number part (optional)
+(
+((\d\d\d)|(\(\d\d\d\)))?            # area code (optional) 
+(\s|-)                              # frist separator
+\d\d\d                              # first 3 digits
+-                                   # separator
+\d\d\d\d                            # last 4 digits
+((ext(\.)?\s|x)                     # word part (optional)
+(\d{2,5}))?                         # extension number part (optional)
+)
 # 
 # 
-# 
-# 
-# 
-# 
+# verbose mode allows for all this multi-line comments thing
 ''', re.VERBOSE)
 
 
@@ -153,26 +152,56 @@ phoneRegEx = re.compile(r'''
 
 
 
+emailRegEx = re.compile(r''' 
 
+[a-zA-Z0-9_.+]+                 # name part - no need to escape because 
+@                               # at  symbol part
+[a-zA-Z0-9_.+]+                 # domain name part
+                                # 
+                                # 
+''', re.VERBOSE)
 
+# get the text off the clipboard
+text = pyperclip.paste()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# get text off clipboard
 # extract email/phone from this text
-# copy extracted email/phone to clipboard
+
+extractedPhone = phoneRegEx.findall(text)
+extractedemail = emailRegEx.findall(text)
+
+
+
+# create blank list for phone numbers
+allPhoneNumbers = []
+for phoneNumber in extractedPhone:
+    allPhoneNumbers.append(phoneNumber[0])
+
+# these didn't workthe first time, as they returned some 'tuples'
+# solution is to put the whole phone number reg ex into parens to make them into one group
+#print(extractedPhone)
+#print(extractedemail)
+# these didn't work so good, they returned some 'tuples'
+
+# after the extra paranes to make a group and the allphonenumbers variable create
+# seem to have good output and successfully display phone numbeers/emails
+#print(allPhoneNumbers)
+#print(extractedemail)
+
+
+
+########################## copy extracted email/phone to clipboard
+
+# next step is getting rid of ' quotes and commas
+
+# one number per line
+ # this will make one number per line
+#phoneResults = '\n'.join(allPhoneNumbers) + '\n' + '\n'.join(extractedemail) 
+#  
+allResults = ',\n'.join(allPhoneNumbers) + ',\n' + '\n'.join(extractedemail) 
+pyperclip.copy(allResults)
+
+# hey! it works!
+# made a text file for the output
+
+#print(allPhoneNumbers)
+#print(extractedemail)
