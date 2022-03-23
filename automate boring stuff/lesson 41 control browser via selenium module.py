@@ -1,6 +1,6 @@
-# web browser module + parsing html w/beautiful soup module
-# lesson 40 / chapter ?
-# pages 240 - 248
+# web browser module + parsing html w/beautiful soup module + selenium
+# lesson 41 / chapter ?
+# pages 249 - 
 # 
 
 
@@ -231,70 +231,3 @@
 
 
 import bs4, requests # webbrowser, sys, pyperclip, requests # sys == command line arguments, argv
-
-# video is using sample amazon page
-# https://www.amazon.com/Automate-Boring-Stuff-Python-2nd/dp/1593279922/
-
-
-#res = requests.get('https://www.amazon.com/Automate-Boring-Stuff-Python-2nd/dp/1593279922/')
-#res.raise_for_status()
-# actually, i got this
-#requests.exceptions.HTTPError: 503 Server Error: Service Unavailable for url:
-# maybe that extra s in https?
-# tried without 's' and got same 503
-# that status code page defines 503 as 
-# 503: service_unavailable, unavailable
-# so maybe amazon is blocking it. I can always use a different page. probably.
-#res = requests.get('https://www.drudgereport.com/') # this one works so...who knows?
-#res.raise_for_status()
-
-#soup = bs4.BeautifulSoup(res.text)
-
-# he got a big long warning message so he added the 'html.parser
-# didn't get anyu warnings in idle though
-#soup = bs4.BeautifulSoup(res.text, 'html.parser')
-
-# pass in css selector
-# can have browser figure out for you.
-# since i couldn't use amazon i used this url instead 
-# https://www.humblebundle.com/store/cyberpunk-2077
-# the video said to select the price then right click/'inspect' to open developer tools of browser
-# then select "copy css path"
-# well the video is from 2015 so that wasn't an option but there is a sub-menu under 'copy'
-# with the selection 'copy selector' and i think that's what i want
-# #mm-0 > div.page-wrap > div.base-main-wrapper > div.inner-main-wrapper > section > div.main-content > div.full-width-container.js-page-content > div > div.row-view.gray-row.showcase-row > div > div:nth-child(3) > div > div.showcase-small.js-info-view > div > section > div > section:nth-child(2) > div > div > div > span.current-price
-# # https://www.humblebundle.com/store/cyberpunk-2077
-
-#res = requests.get('https://www.humblebundle.com/store/cyberpunk-2077') 
-#soup = bs4.BeautifulSoup(res.text, 'html.parser')
-#res.raise_for_status()
-
-#elems = soup.select('#mm-0 > div.page-wrap > div.base-main-wrapper > div.inner-main-wrapper > section > div.main-content > div.full-width-container.js-page-content > div > div.row-view.gray-row.showcase-row > div > div:nth-child(3) > div > div.showcase-small.js-info-view > div > section > div > section:nth-child(2) > div > div > div > span.current-price')
-#print(soup.contents)
-#print(elems[].)
-#print(soup.get_text('class="showcase-small js-info-view"'))
-#print(soup.descendants[0])
-
-def  getPriceFromHumble(productURL):
-    res = requests.get(productURL) 
-    res.raise_for_status()
-
-    soup = bs4.BeautifulSoup(res.text, 'html.parser')
-    #elems = soup.select('mm-0 > div.page-wrap > div.base-main-wrapper > div.inner-main-wrapper > section > div.main-content > div.full-width-container.js-page-content > div > div.row-view.gray-row.showcase-row > div > div:nth-child(3) > div > div.showcase-small.js-info-view > div > section > div > section:nth-child(2) > div > div > div > span.current-price')
-    elems = soup.select('.product-details-page .pricing-info-view .platform-pricing-grid .pricing-container .price-info .current-price, .product-details-page .freebie-info-view .platform-pricing-grid .pricing-container .price-info .current-price')
-    return elems[0].text.strip()
-
-
-
-# for after done with function
-# this does not work
-# because elems above returns empty string
-# could blame the web page
-#  but amzon isn't working
-# so I'll have to look it up anyway
-price = getPriceFromHumble('https://www.humblebundle.com/store/cyberpunk-2077')
-print('The price is ' + price)
-
-# might be work around in later videos i don't know
-# so this video was pretty worthless
-# maybe selenium will make it easier
