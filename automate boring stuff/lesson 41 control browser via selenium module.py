@@ -229,5 +229,39 @@
 # installed with command:
 #### pip install beautifulsoup4
 
+############# selenium installation/lesson 41 #############
+# installed with command
+### pip install -U selenium
+# which worked
+# but since i need a "web driver"
+# I got the chromedriver
 
-import bs4, requests # webbrowser, sys, pyperclip, requests # sys == command line arguments, argv
+# today at least chrome is version99.0.4844.51 so I downlad the zip from here
+# https://chromedriver.storage.googleapis.com/index.html?path=99.0.4844.51/
+
+#import bs4, requests # webbrowser, sys, pyperclip, requests # sys == command line arguments, argv
+from selenium import webdriver
+browser = webdriver.Firefox() # starts the browser in "selenium mode" (robot icon to left of URL in URL bar)
+browser.get('https://drudgereport.com') # once firefox open this sends it to specified URL. but needs both
+
+# body > tt:nth-child(1) > b:nth-child(1) > tt:nth-child(3) > b:nth-child(1) > center:nth-child(29) > font:nth-child(1) > font:nth-child(1) > a:nth-child(3)
+
+#elem = browser.find_element_by_css_selector('body > tt:nth-child(1) > b:nth-child(1) > tt:nth-child(3) > b:nth-child(1) > center:nth-child(29) > font:nth-child(1) > font:nth-child(1) > a:nth-child(3)')
+
+# After looking at the documetnation
+# https://www.selenium.dev/documentation/webdriver/elements/finders/
+# found out that the browser.find_element_by_css_selector is deprecated
+# then I further found out I need this extra import line
+# from selenium.webdriver.common.by import By
+from selenium.webdriver.common.by import By
+# because otherwise it will just keep saying that 'By' is undefined
+# this line worked without any errors in idle
+elem = browser.find_element(by=By.CSS_SELECTOR, value='body > tt:nth-child(1) > b:nth-child(1) > tt:nth-child(3) > b:nth-child(1) > center:nth-child(29) > font:nth-child(1) > font:nth-child(1) > a:nth-child(3)')
+################# elem = browser.find_element(by=By.CSS_SELECTOR, value='body > tt:nth-child(1) > b:nth-child(1) > tt:nth-child(3) > b:nth-child(1) > center:nth-child(29) > font:nth-child(1) > font:nth-child(1) > a:nth-child(3)')
+# also, it's much easier to "copy css path" or whatever from firefox's dev tools than chrome's
+# I had up to this point and ran it on the command shell and no errors
+#elem.click()
+# then I did 
+elems = browser.find_elements(by=By.CSS_SELECTOR, value='p')
+print(len(elems)) # for cli - returns 4 just like idle and no errors
+# it's drudge though so it came back as 4 paragraphs
