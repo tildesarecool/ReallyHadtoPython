@@ -265,3 +265,12 @@ elem = browser.find_element(by=By.CSS_SELECTOR, value='body > tt:nth-child(1) > 
 elems = browser.find_elements(by=By.CSS_SELECTOR, value='p')
 print(len(elems)) # for cli - returns 4 just like idle and no errors
 # it's drudge though so it came back as 4 paragraphs
+
+# sinca all the information in video is outdated there's no reason to try and follow it
+# I'll just watch it and take note of what seems more interesting for what i can do
+# but really this is just fyi stuff
+
+# looks like browser.back, browser.forward, browser.refresh and browser.quit are all things
+# all web elements have a text member variable that contains a string of the text inside of that element
+# one approach is just to grab the html tag/element which contains the whole web page
+# 
