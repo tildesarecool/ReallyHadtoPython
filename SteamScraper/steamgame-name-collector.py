@@ -1,7 +1,7 @@
 import bs4, requests 
 
-# STEAM_LIBRARY_URL = "https://steamcommunity.com/id/subassy/games/?tab=all"
-STEAM_LIBRARY_URL = "https://steeeeamcommmmmmunity.com/id/subassy/games/?tab=all"
+STEAM_LIBRARY_URL = "https://steamcommunity.com/id/subassy/games/?tab=all"
+# STEAM_LIBRARY_URL = "https://steeeeamcommmmmmunity.com/id/subassy/games/?tab=all"
 
 def testLibURL(LibraryURL):
     testExists = requests.get(LibraryURL)
