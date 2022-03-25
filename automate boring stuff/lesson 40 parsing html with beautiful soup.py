@@ -230,10 +230,12 @@
 #### pip install beautifulsoup4
 
 
+from asyncio import constants
 import bs4, requests # webbrowser, sys, pyperclip, requests # sys == command line arguments, argv
 
 # video is using sample amazon page
 # https://www.amazon.com/Automate-Boring-Stuff-Python-2nd/dp/1593279922/
+# amazon has some kind of anit-bot technology now so the example doesn't work
 
 
 #res = requests.get('https://www.amazon.com/Automate-Boring-Stuff-Python-2nd/dp/1593279922/')
@@ -274,6 +276,8 @@ import bs4, requests # webbrowser, sys, pyperclip, requests # sys == command lin
 #print(elems[].)
 #print(soup.get_text('class="showcase-small js-info-view"'))
 #print(soup.descendants[0])
+
+
 
 def  getPriceFromHumble(productURL):
     res = requests.get(productURL) 
