@@ -1,19 +1,27 @@
 
-from pydoc import doc
-from unittest import result
-from attr import attr
-import bs4, requests, webbrowser, sys, pyperclip
-from bs4 import BeautifulSoup
+######## was in use
+#from pydoc import doc
+#from unittest import result
+#from attr import attr
+#import bs4, requests, webbrowser, sys, pyperclip
+#from bs4 import BeautifulSoup
+######## was in use
 
 
-STEAM_LIBRARY_URL = "https://steamcommunity.com/id/subassy/games/?tab=all&sort=name" # my steam library
-URL_TRUE = 200 # status code from "requests" that it "found the URL" thus it's as good as 'true' in this context
+######## was in use
+# STEAM_LIBRARY_URL = "https://steamcommunity.com/id/subassy/games/?tab=all&sort=name" # my steam library
+# URL_TRUE = 200 # status code from "requests" that it "found the URL" thus it's as good as 'true' in this context
+######## was in use
+
 # STEAM_LIBRARY_URL = "https://steeeeamcommmmmmunity.com/id/subassy/games/?tab=all"
 
-def testLibURL(LibraryURL):
-    testExists = requests.get(LibraryURL)
+######## was in use
+#def testLibURL(LibraryURL):
+#    testExists = requests.get(LibraryURL)
     #print(testExists.status_code)
-    return testExists.status_code # returns int, 200 means returns true; or returns 'response object'. or i'm not sure. 200 anyway
+#    return testExists.status_code # returns int, 200 means returns true; or returns 'response object'. or i'm not sure. 200 anyway
+######## was in use
+
 #    try:
     #return testExists.raise_for_status()
 #    except: break
@@ -41,19 +49,101 @@ actually i could probably insert a newline after every comma,
 the udemy course covered that
 so i wouldn't have to parse html at all. just this gaint maybe/maybe not json-like data blob
 
+
+since I'm almost positive the data block on the steam library page is json formatted already
+it'd make sense to figure out how to capture just that portion of the page and convert into something 
+python can read like a dictionary
+then eventually write the back out to a file just so it doesn't have to retreived again if for no other 
+reason
+I my library doesn't change that often so the retrieving part could be an optional thing with the default
+being to just load in the data from the last retrieval
+
+I started using this video
+https://www.youtube.com/watch?v=-51jxlQaxyA
+to learning about python/json
+as I could expect, the library is
+import json
+then with the long string of data available (starting from a curly brace {) 
+assign it to a variable 
+json_stirng == (long json formatting string) - won't work if not valid json
+follwoing by another variable
+data = json.loads(json_string) - the 's' in 'loads' actually stands for 'string'. there's also file mode
+assume that's done successfully, possible to append with  something like
+data['test'] = True
+new_json = json.dumps(data)
+print(new_json) - that test is appended to end
+or
+new_json = json.dumps(data, indent=2)
+to put in the indentation
+and also
+new_json = json.dumps(data, indent=2, sort_keys=True)
+to sort keys alphabetically
+I'll use the capture json data i already saved as a file, gameslibrary.json as a test
+
+
 '''
+
+import json
+with open("justonegame.json", "r") as f:
+    data = json.load(f) # no s load, because loading as file
+
+
+# print(data.items())
+
+with open("appended-one-game.json", "w",) as f:
+    json.dump(data, f, indent=2, sort_keys=True)
+
+
+
+'''
+felt like i should save this
+this is contnets of justonegame.json and it works with the json/open file function
+i mean no json errors from vscode anyway. could end up with other issues.
+-------------------------
+{
+    "appid":1025480,
+    "name":"1-Bit Revival: The Residuals of Null",
+    "app_type":1,
+    "logo":"https:\/\/cdn.akamai.steamstatic.com\/steam\/apps\/1025480\/capsule_184x69.jpg",
+    "friendlyURL":1025480,"availStatLinks":
+    {
+        "achievements":true,
+        "global_achievements":true,
+        "stats":false,
+        "gcpd":false,
+        "leaderboards":false,
+        "global_leaderboards":false
+    },
+        "hours_forever":"0.6",
+        "last_played":1642216987
+}
+--------------------
+output:
+dict_items([('appid', 1025480), ('name', '1-Bit Revival: The Residuals of Null'), ('app_type', 1), ('logo', 'https://cdn.akamai.steamstatic.com/steam/apps/1025480/capsule_184x69.jpg'), ('friendlyURL', 1025480), ('availStatLinks', {'achievements': True, 'global_achievements': True, 'stats': False, 'gcpd': False, 'leaderboards': False, 'global_leaderboards': False}), ('hours_forever', '0.6'), ('last_played', 1642216987)])
+
+
+'''
+
+
 #################################### many hours later ####################################
 
 
 #testLibURL(STEAM_LIBRARY_URL)
 
-def getGameUUID():
+######## was in use
+#def getGameUUID():
+######## was in use    
+
     #soup = bs4.BeautifulSoup(file.txt, 'html.parser')
     #testResult = testLibURL(STEAM_LIBRARY_URL)
     #if testResult == URL_TRUE:
     # with open("saved-library-page.html", "r") as f:
-    result = requests.get(STEAM_LIBRARY_URL) # resut.text will show whole source of page
-    doc = BeautifulSoup(result.text, "html.parser")
+
+######## was in use
+    #result = requests.get(STEAM_LIBRARY_URL) # resut.text will show whole source of page
+    #doc = BeautifulSoup(result.text, "html.parser")
+######## was in use
+
     #ToFind = doc.find_all(text="Steam")
     # print(doc.find_all("img")[1])
     #print(doc.find_all(text="Days"))
@@ -68,7 +158,11 @@ def getGameUUID():
     # findings = doc.find_all("div", class_="gameListRowItemTopPrimary") # well this still return empty but at least no error
     # findings = doc.find_all(class_="submenu_store") # well this worked but gameListRowItemTopPrimary didn't so it's a mystery so far
     #putOnClipboard = 
-    pyperclip.copy(result.text)# put contents of whatever the results.get fucntion above is downloading
+
+######## was in use
+  #  pyperclip.copy(result.text)# put contents of whatever the results.get fucntion above is downloading
+######## was in use
+#     
     #print(doc)
     
     #findings = doc.find_all(class_="game_capsule") 
@@ -93,9 +187,9 @@ def getGameUUID():
     #    sys.exit()
 
 
-
-getGameUUID()
-
+######## was in use
+#getGameUUID()
+######## was in use
 
 
 ###################################################################################################

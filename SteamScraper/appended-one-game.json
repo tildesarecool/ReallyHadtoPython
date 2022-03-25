@@ -1,0 +1,17 @@
+{
+  "app_type": 1,
+  "appid": 1025480,
+  "availStatLinks": {
+    "achievements": true,
+    "gcpd": false,
+    "global_achievements": true,
+    "global_leaderboards": false,
+    "leaderboards": false,
+    "stats": false
+  },
+  "friendlyURL": 1025480,
+  "hours_forever": "0.6",
+  "last_played": 1642216987,
+  "logo": "https://cdn.akamai.steamstatic.com/steam/apps/1025480/capsule_184x69.jpg",
+  "name": "1-Bit Revival: The Residuals of Null"
+}
