@@ -27,6 +27,57 @@
 #    except: break
 
 #################################### many hours later ####################################
+
+    #result = requests.get(STEAM_LIBRARY_URL) # resut.text will show whole source of page
+    #doc = BeautifulSoup(result.text, "html.parser")
+
+import requests, pyperclip
+from bs4 import BeautifulSoup
+STEAM_LIBRARY_URL = "https://steamcommunity.com/id/subassy/games/?tab=all&sort=name"
+URL_TRUE = 200 # status code from "requests" that it "found the URL" thus it's as good as 'true' in this context
+
+result = requests.get(STEAM_LIBRARY_URL) # resut.text will show whole source of page
+loadToBeaut = BeautifulSoup(result.text, "html.parser")
+
+    # print(doc.find_all("a")[1])
+# scriptContent = loadToBeaut.find_all("script")[17] # this is winning line: it is 18th script tag or 17 counting from 0
+#scriptContent = loadToBeaut.find_all("script")[17] # this is winning line: it is 18th script tag or 17 counting from 0
+scriptContent = str(loadToBeaut.select('#responsive_page_template_content > script:nth-child(4)')[0])
+
+#rawString = scriptContent[:49]
+preambleText = scriptContent[:49] # <--- this goes up to 'rgGames = ', so exclude this string
+noMorePreamble = scriptContent.replace(preambleText, '')
+
+
+# apparently remove prefix/suffix is a thing
+#print(str(noMorePreamble[-815:-1])) # well str(noMorePreamble[-815:-1]) technically does it
+
+
+
+#postText = noMorePreamble.split(sep=";") # splits return list not string
+
+#print(type(postText)) # returns list
+
+#print(rawString)
+#elems = scriptContent[0]
+
+#print(type(elems))
+#print(type(scriptContent))
+#getmore = elems.get_text("[{")
+#getmore = elems.get_text(separator="=")
+#tryAtCData = elems.cdata_list_attributes[]
+#pyperclip.copy(scriptContent)
+#pyperclip.copy(str(postText)) # my list/string converting needs work
+pyperclip.copy(noMorePreamble)
+#pyperclip.copy(str(rawString))
+#pyperclip.copy(str(elems.get_text(separator="=")))
+#pyperclip.copy(str(elems))
+#pyperclip.copy(str(getmore))
+#pyperclip.copy(str(getmore))
+
+#print(scriptContent)
+
+
 '''
 apparnetly an unassigned string literal with three quotes is a multi-line comment in ptyon
 
@@ -82,7 +133,8 @@ I'll use the capture json data i already saved as a file, gameslibrary.json as a
 
 
 '''
-
+# this is the working json code - march 25 2022
+''''
 import json
 with open("justonegame.json", "r") as f:
     data = json.load(f) # no s load, because loading as file
@@ -93,6 +145,7 @@ with open("justonegame.json", "r") as f:
 with open("appended-one-game.json", "w",) as f:
     json.dump(data, f, indent=2, sort_keys=True)
 
+'''
 
 
 '''

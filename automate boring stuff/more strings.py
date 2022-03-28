@@ -57,7 +57,7 @@ acommma = ','
 acommma = acommma.join(['cats', 'rats', 'bats'])
 print(acommma)
 
-# split is opposite of join
+#  is opposite of join
 #acommma = acommma.split()
 #print(acommma)
 
