@@ -1,0 +1,117 @@
+Python 3.10.3 (tags/v3.10.3:a342a49, Mar 16 2022, 13:07:40) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+hello = "hell world"
+hello.rsplit(sep=" ")
+['hell', 'world']
+hello
+'hell world'
+hello2 = hello.rsplit(sep=" ")
+hello2[0]
+'hell'
+hello = "hell world"
+hello2 = hello.rsplit(sep=" ")
+hello2[0]
+'hell'
+hello = "hello world"
+hello2 = hello.rsplit(sep=" ")
+hello2[0]
+'hello'
+hell2string = str(hello2[0])
+print(hell2string)
+hello
+hello2.index(l,start=0,stop=hellstring.len-1)
+Traceback (most recent call last):
+  File "<pyshell#13>", line 1, in <module>
+    hello2.index(l,start=0,stop=hellstring.len-1)
+NameError: name 'l' is not defined
+hell2string.find('l')
+2
+hell2string.find('o')
+4
+print(hell2string[4])
+o
+hell2string.find('e')
+1
+startchar = hell2string.find('e')
+endchar = hell2string[:-1]
+endchar
+'hell'
+hello
+'hello world'
+hello[-1]
+'d'
+endchar = hell2string[-1]
+endchar
+'o'
+endchar = hello[-1]
+enchar
+Traceback (most recent call last):
+  File "<pyshell#26>", line 1, in <module>
+    enchar
+NameError: name 'enchar' is not defined. Did you mean: 'endchar'?
+endchar
+'d'
+startchar
+1
+endchar = hell2string.find('d')
+endchar
+-1
+endchar = hello.find('d')
+endchar
+10
+startchar
+1
+endchar = hello.find('r')
+startchar = hello.find('e')
+endchar
+8
+startchar
+1
+print(hello[1:8])
+ello wo
+print(hello[startchar:endchar])
+ello wo
+smalstring = hello[startchar:endchar]
+hello.find(not=smalstring)
+SyntaxError: invalid syntax
+
+hello.endswith()
+Traceback (most recent call last):
+  File "<pyshell#43>", line 1, in <module>
+    hello.endswith()
+TypeError: endswith() takes at least 1 argument (0 given)
+hello.count()
+Traceback (most recent call last):
+  File "<pyshell#44>", line 1, in <module>
+    hello.count()
+TypeError: count() takes at least 1 argument (0 given)
+len(hello)
+11
+lastchar = len(hello)
+hello[lastchar
+      
+KeyboardInterrupt
+hello[lastchar]
+      
+Traceback (most recent call last):
+  File "<pyshell#48>", line 1, in <module>
+    hello[lastchar]
+IndexError: string index out of range
+hello[lastchar-1]
+      
+'d'
+hello[0]
+      
+'h'
+len(smalstring)
+      
+7
+smalstring[len(smalstring)]
+      
+Traceback (most recent call last):
+  File "<pyshell#52>", line 1, in <module>
+    smalstring[len(smalstring)]
+IndexError: string index out of range
+smalstring[len(smalstring)-1]
+      
+'o'
