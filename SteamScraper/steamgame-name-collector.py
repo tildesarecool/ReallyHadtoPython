@@ -43,11 +43,45 @@ loadToBeaut = BeautifulSoup(result.text, "html.parser")
 # scriptContent = loadToBeaut.find_all("script")[17] # this is winning line: it is 18th script tag or 17 counting from 0
 #scriptContent = loadToBeaut.find_all("script")[17] # this is winning line: it is 18th script tag or 17 counting from 0
 scriptContent = str(loadToBeaut.select('#responsive_page_template_content > script:nth-child(4)')[0])
+'''
+# (keep this)
+PostambleStartPos = (scriptContent.find("= ") + 2)
+print(PostambleStartPos)
+print(scriptContent[0:PostambleStartPos])
+'''
+PostambleStartPos = (scriptContent.find("= ") + 2)
+#print(scriptContent.find(("rgChangingGames")))
+startSuffixPos = scriptContent.find("rgChangingGames") - 8
+endSuffixPos = len(scriptContent)
+wholeOfSuffix = scriptContent[(startSuffixPos):endSuffixPos]
 
+
+#startKeepPos = scriptContent[PostambleStartPos]
+#endKeepPos = scriptContent[startSuffixPos]
+#justGamedata = scriptContent[startKeepPos:endKeepPos]
+#print(str(endKeepPos))
+#print("the start position is " + str(PostambleStartPos) + " and the end is " + str(startSuffixPos))
+justGamedata = scriptContent[PostambleStartPos:startSuffixPos]
+#print(justGamedata)
+pyperclip.copy(justGamedata)
+
+#print(wholeOfSuffix)
+#print(len(scriptContent))
+
+'''
+# this thing works for suffix
+pyperclip.copy(wholeOfSuffix)
+'''
 #rawString = scriptContent[:49]
+'''
 preambleText = scriptContent[:49] # <--- this goes up to 'rgGames = ', so exclude this string
 noMorePreamble = scriptContent.replace(preambleText, '')
+'''
 
+#scriptContent.find()
+
+#print(scriptContent.count("]")) # 
+'''print(scriptContent.find("rgChangingGames")) # just 1. obviously.'''
 
 # apparently remove prefix/suffix is a thing
 #print(str(noMorePreamble[-815:-1])) # well str(noMorePreamble[-815:-1]) technically does it
@@ -68,7 +102,7 @@ noMorePreamble = scriptContent.replace(preambleText, '')
 #tryAtCData = elems.cdata_list_attributes[]
 #pyperclip.copy(scriptContent)
 #pyperclip.copy(str(postText)) # my list/string converting needs work
-pyperclip.copy(noMorePreamble)
+#pyperclip.copy(noMorePreamble)
 #pyperclip.copy(str(rawString))
 #pyperclip.copy(str(elems.get_text(separator="=")))
 #pyperclip.copy(str(elems))
