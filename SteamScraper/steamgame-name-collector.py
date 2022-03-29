@@ -64,6 +64,11 @@ wholeOfSuffix = scriptContent[(startSuffixPos):endSuffixPos]
 justGamedata = scriptContent[PostambleStartPos:startSuffixPos]
 #print(justGamedata)
 pyperclip.copy(justGamedata)
+#pyperclip.copy(result.json()) # this did not go well
+#print(type(justGamedata)) # (string)
+writeAfile = open("justGamedata.txt")
+writeAfile.write(justGamedata)
+writeAfile.close()
 
 #print(wholeOfSuffix)
 #print(len(scriptContent))
