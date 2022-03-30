@@ -1,0 +1,10 @@
+tech with tim webscaping tutorial notes
+https://www.youtube.com/watch?v=gRLHr664tXA&list=PLzMcBGfZo4-lSq2IDrA6vpZEV92AmQfJK
+
+this time I'll just try and use the pages he uses
+intead of my own 
+
+
+# tim's github repo for this video series
+# https://github.com/techwithtim/Beautiful-Soup-Tutorial
+
