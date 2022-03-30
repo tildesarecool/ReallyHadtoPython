@@ -66,7 +66,7 @@ justGamedata = scriptContent[PostambleStartPos:startSuffixPos]
 pyperclip.copy(justGamedata)
 #pyperclip.copy(result.json()) # this did not go well
 #print(type(justGamedata)) # (string)
-writeAfile = open("justGamedata.txt")
+writeAfile = open("justGamedata.txt", "x")
 writeAfile.write(justGamedata)
 writeAfile.close()
 
