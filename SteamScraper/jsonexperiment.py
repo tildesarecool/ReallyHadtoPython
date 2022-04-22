@@ -2,11 +2,11 @@ import json
 
 json1 = '''{"platform":"Nokia", "ip":"1.1.1.1"},{"platform":"Nokia", "ip":"1.1.1.1"}'''
 
-dict1 = json.loads(json1)
+#dict1 = json.loads(json1)
 
 #print(type(dict1))
 
-json2 = json.dumps(dict1, indent=4)
+#json2 = json.dumps(dict1, indent=4)
 
 #print("json2 is " + str(type(json2)))
 
@@ -14,7 +14,7 @@ json2 = json.dumps(dict1, indent=4)
 
 #print(dict1.get('ip'))
 
-json3 = json.loads(json2)
+#json3 = json.loads(json2)
 
 #print("json3 is " + str(type(json3)))
 #print(json3)
