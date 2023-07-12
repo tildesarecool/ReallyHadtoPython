@@ -13,3 +13,9 @@
 print( 7 // 2 ) # not sure i knew about this truncating decimal (not rounding) -  output is just 3
 
 
+# function - 57 min or so in
+
+
+# 1h 3m 22s - methods
+
+
