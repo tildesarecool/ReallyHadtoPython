@@ -10,5 +10,6 @@
 # programiz.com...i don't actually see the interactive shell demonstrated in the video but i don't need it anyway
 # also replit.com
 
+print( 7 // 2 ) # not sure i knew about this truncating decimal (not rounding) -  output is just 3
 
 
