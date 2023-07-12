@@ -19,3 +19,7 @@ print( 7 // 2 ) # not sure i knew about this truncating decimal (not rounding) -
 # 1h 3m 22s - methods
 
 
+# i skipped ahead to 02:08:45 - Lists and tuples
+# hopefully i didn't skip too much intersting things
+# a lot like list: tuples - immutable 
+
