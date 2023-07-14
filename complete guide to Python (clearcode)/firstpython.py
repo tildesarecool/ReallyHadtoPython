@@ -127,3 +127,37 @@ excercise_slicing = test_list[::]
 solution_slice = excercise_slicing[-3:0:-2]
 
 print(solution_slice)
+
+# list/tuples - "unpacking"
+# a,b = (10,5) - assigning first/second value as one line
+
+# another wayt o define tuples basically 
+
+a,b = (10,5)
+print(a)
+print(b)
+
+c,d = [20, 'Hello']
+
+print(c)
+print(d)
+
+# "when creating tuples doesn't actually need parens"
+# so these two lines are actually the same
+#    a_list = (1,2,3)
+#    a_list = 1,2,3
+
+# exploring this
+health, energy, weapon = 100,50, 'sword'
+print(weapon)
+
+# excercise
+value_1 = 10 
+value_2 = 'test'
+# switch values of the two variables
+
+value_1, value_2 = value_2, value_1 # ...nailed it...
+
+print(value_1, value_2)
+
+# stopping at 2:44:33 under sub-secion "strings are similar to lists/tuples"
