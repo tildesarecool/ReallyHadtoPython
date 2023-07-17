@@ -160,4 +160,4 @@ value_1, value_2 = value_2, value_1 # ...nailed it...
 
 print(value_1, value_2)
 
-# stopping at 2:44:33 under sub-secion "strings are similar to lists/tuples"
+# stopping at 2:44:13 under sub-secion "strings are similar to lists/tuples"
