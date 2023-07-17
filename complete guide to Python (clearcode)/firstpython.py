@@ -119,28 +119,28 @@
 # start from 8 and go to 2 values - pick every second value
 
 
-test_list = [1,2,3,4,5,6,7,8,9,10]
+#test_list = [1,2,3,4,5,6,7,8,9,10]
 
-excercise_slicing = test_list[::]
+#excercise_slicing = test_list[::]
 
 
-solution_slice = excercise_slicing[-3:0:-2]
+#solution_slice = excercise_slicing[-3:0:-2]
 
-print(solution_slice)
+#print(solution_slice)
 
 # list/tuples - "unpacking"
 # a,b = (10,5) - assigning first/second value as one line
 
 # another wayt o define tuples basically 
 
-a,b = (10,5)
-print(a)
-print(b)
+#a,b = (10,5)
+#print(a)
+#print(b)
 
-c,d = [20, 'Hello']
+#c,d = [20, 'Hello']
 
-print(c)
-print(d)
+#print(c)
+#print(d)
 
 # "when creating tuples doesn't actually need parens"
 # so these two lines are actually the same
@@ -148,16 +148,142 @@ print(d)
 #    a_list = 1,2,3
 
 # exploring this
-health, energy, weapon = 100,50, 'sword'
-print(weapon)
+#health, energy, weapon = 100,50, 'sword'
+#print(weapon)
 
 # excercise
-value_1 = 10 
-value_2 = 'test'
+#value_1 = 10 
+#value_2 = 'test'
 # switch values of the two variables
 
-value_1, value_2 = value_2, value_1 # ...nailed it...
+#value_1, value_2 = value_2, value_1 # ...nailed it...
 
-print(value_1, value_2)
+#print(value_1, value_2)
 
-# stopping at 2:44:13 under sub-secion "strings are similar to lists/tuples"
+# stopping at 2:44:33 under sub-secion "strings are similar to lists/tuples"
+
+# turning string into a list/tuple
+
+#test_string = 'this is a test'
+#test_list = [1,2,3,4]
+
+
+#print(test_string.split('t'))
+#print(test_string.split())
+
+#print(list(test_string))
+
+#print(tuple(test_string))
+
+# turn a list / tuple into a string
+#print(' '.join(['one','two', 'three', 'four']))
+#print(' '.join(test_list)) # this throws a type error
+#print(str(test_list))
+#print(type(str(test_list)))
+
+# indexing strings - same 0-based element access as list/tuple
+# can also do splicing
+#print(test_string[0])
+#print(test_string[0:5])
+
+
+# next exercise
+# remove all the stuff to only get 1 2 3 4 
+# "remove everything besides the numbers"
+'''
+test_string = 'this is a test'
+test_list = [1,2,3,4]
+
+print(type(str(test_list)))
+print(str(test_list))
+turnTestlistToString = str(test_list)
+print(turnTestlistToString[1:-1]) # output is 1, 2, 3, 4
+
+print(turnTestlistToString.split()) # output is ['[1,', '2,', '3,', '4]']
+
+turnTestlistToStringWithSplit = turnTestlistToString.split(',')
+print(turnTestlistToString[1:-1])
+print(type(turnTestlistToStringWithSplit))
+turnTestlistToStringWithJoin = ' '.join(turnTestlistToStringWithSplit)
+print(type(turnTestlistToStringWithJoin))
+print(turnTestlistToStringWithJoin)
+print(turnTestlistToStringWithJoin[1:11])
+ExerciseFinalAnswer = turnTestlistToStringWithJoin[1:11]
+
+print(ExerciseFinalAnswer)
+'''
+
+# 2h51m51s - video answer involves strip, guess i missed that one
+# he takes the original, test_list = [1,2,3,4] and converts it to a string
+# with str(test_list)
+# then adds the strip method - test_list = [1,2,3,4].strip('[')
+# then used double strip methods so
+#.strip('[').strip(']')
+#then added double replace via
+#.replace(',','').replace(' ','')
+
+# so the whole thing is 
+# str(test_list).strip('[').strip(']').replace(',','').replace(' ','')
+
+''' # just wanted to do some experiments with strings and the len function; no idea if this will be useful later
+test_string = 'this is a test'
+lenOftestString = len(test_string)
+print(test_string[1])
+print(lenOftestString)
+print(test_string[0:lenOftestString-4])
+print(test_string[0:lenOftestString-5])
+'''
+
+
+#################################### dictionaries 2h53m0s ####################################
+
+# ' complex container for other variables' 
+# using a key - each value has a key
+
+#test_dict = {key:value}
+test_dict = {'A':123, 'B':[1,2,3],1:True,}
+print(test_dict) # output: {'A': 123, 'B': [1, 2, 3], 1: True}
+print(test_dict.values()) # output: dict_values([123, [1, 2, 3], True])
+# type will come back as class 'dict_values' 
+
+# other method is keys()
+print(test_dict.keys()) # output: dict_keys(['A', 'B', 1])
+
+# also there's the items() method which returns tuples
+print(test_dict.items()) # output: dict_items([('A', 123), ('B', [1, 2, 3]), (1, True)])
+
+# there's also the len function, apparently this is how you actually use it
+print(len(test_dict)) # output: 3
+
+# converting a dictionary
+print(list(test_dict)) # ['A', 'B', 1]
+
+# same output as the list conversion
+print(tuple(test_dict)) # ('A', 'B', 1)
+
+print(str(test_dict)) # {'A': 123, 'B': [1, 2, 3], 1: True}
+
+# indexing w/dictionaries
+# does not work same way as above
+# name key instead
+
+print(test_dict['A']) # does crash when does not find the specified key
+
+print(test_dict.get('A')) # get slightly better - returns message when doesn't find key
+
+# Exercise for dictionaries -
+# do research and use the update method to add another key value pair
+
+dictExerAnswer = test_dict.copy()
+
+dictExerAnswer.update({0:False}) #.update(2:False)
+
+print(dictExerAnswer) # {'A': 123, 'B': [1, 2, 3], 1: True, 0: False}
+
+# could also use dictExerAnswer.update(C = 'test', D = '123')
+#another way
+#dictExerAnswer['E'] = 100
+
+#################################### Sets - 3h4m35s - ####################################
+
+
