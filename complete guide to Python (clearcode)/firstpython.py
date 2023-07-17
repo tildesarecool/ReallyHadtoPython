@@ -190,7 +190,7 @@
 # next exercise
 # remove all the stuff to only get 1 2 3 4 
 # "remove everything besides the numbers"
-
+'''
 test_string = 'this is a test'
 test_list = [1,2,3,4]
 
@@ -211,6 +211,7 @@ print(turnTestlistToStringWithJoin[1:11])
 ExerciseFinalAnswer = turnTestlistToStringWithJoin[1:11]
 
 print(ExerciseFinalAnswer)
+'''
 
 # 2h51m51s - video answer involves strip, guess i missed that one
 # he takes the original, test_list = [1,2,3,4] and converts it to a string
@@ -224,7 +225,65 @@ print(ExerciseFinalAnswer)
 # so the whole thing is 
 # str(test_list).strip('[').strip(']').replace(',','').replace(' ','')
 
+''' # just wanted to do some experiments with strings and the len function; no idea if this will be useful later
+test_string = 'this is a test'
+lenOftestString = len(test_string)
+print(test_string[1])
+print(lenOftestString)
+print(test_string[0:lenOftestString-4])
+print(test_string[0:lenOftestString-5])
+'''
 
 
+#################################### dictionaries 2h53m0s ####################################
+
+# ' complex container for other variables' 
+# using a key - each value has a key
+
+#test_dict = {key:value}
+test_dict = {'A':123, 'B':[1,2,3],1:True,}
+print(test_dict) # output: {'A': 123, 'B': [1, 2, 3], 1: True}
+print(test_dict.values()) # output: dict_values([123, [1, 2, 3], True])
+# type will come back as class 'dict_values' 
+
+# other method is keys()
+print(test_dict.keys()) # output: dict_keys(['A', 'B', 1])
+
+# also there's the items() method which returns tuples
+print(test_dict.items()) # output: dict_items([('A', 123), ('B', [1, 2, 3]), (1, True)])
+
+# there's also the len function, apparently this is how you actually use it
+print(len(test_dict)) # output: 3
+
+# converting a dictionary
+print(list(test_dict)) # ['A', 'B', 1]
+
+# same output as the list conversion
+print(tuple(test_dict)) # ('A', 'B', 1)
+
+print(str(test_dict)) # {'A': 123, 'B': [1, 2, 3], 1: True}
+
+# indexing w/dictionaries
+# does not work same way as above
+# name key instead
+
+print(test_dict['A']) # does crash when does not find the specified key
+
+print(test_dict.get('A')) # get slightly better - returns message when doesn't find key
+
+# Exercise for dictionaries -
+# do research and use the update method to add another key value pair
+
+dictExerAnswer = test_dict.copy()
+
+dictExerAnswer.update({0:False}) #.update(2:False)
+
+print(dictExerAnswer) # {'A': 123, 'B': [1, 2, 3], 1: True, 0: False}
+
+# could also use dictExerAnswer.update(C = 'test', D = '123')
+#another way
+#dictExerAnswer['E'] = 100
+
+#################################### Sets - 3h4m35s - ####################################
 
 
