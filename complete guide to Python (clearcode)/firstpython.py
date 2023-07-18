@@ -239,7 +239,7 @@ print(test_string[0:lenOftestString-5])
 
 # ' complex container for other variables' 
 # using a key - each value has a key
-
+"""
 #test_dict = {key:value}
 test_dict = {'A':123, 'B':[1,2,3],1:True,}
 print(test_dict) # output: {'A': 123, 'B': [1, 2, 3], 1: True}
@@ -262,23 +262,28 @@ print(list(test_dict)) # ['A', 'B', 1]
 print(tuple(test_dict)) # ('A', 'B', 1)
 
 print(str(test_dict)) # {'A': 123, 'B': [1, 2, 3], 1: True}
-
+"""
 # indexing w/dictionaries
 # does not work same way as above
 # name key instead
-
+"""
 print(test_dict['A']) # does crash when does not find the specified key
 
 print(test_dict.get('A')) # get slightly better - returns message when doesn't find key
-
+"""
 # Exercise for dictionaries -
 # do research and use the update method to add another key value pair
+
+"""
 
 dictExerAnswer = test_dict.copy()
 
 dictExerAnswer.update({0:False}) #.update(2:False)
 
 print(dictExerAnswer) # {'A': 123, 'B': [1, 2, 3], 1: True, 0: False}
+
+"""
+
 
 # could also use dictExerAnswer.update(C = 'test', D = '123')
 #another way
@@ -287,3 +292,112 @@ print(dictExerAnswer) # {'A': 123, 'B': [1, 2, 3], 1: True, 0: False}
 #################################### Sets - 3h4m35s - ####################################
 
 
+# simple containers for other variables
+# use {} - has only values/no keys and also no duplicate values allowed
+"""
+my_set = {1,2,3,4}
+print(my_set)
+print(len(my_set)) # output is 4
+"""
+
+#### methods
+"""
+my_set.add(5)
+print(my_set) # added the 5 to the end
+print(len(my_set)) # output is 5
+
+my_set.remove(2) # remove the 2
+print(my_set) # {1, 3, 4, 5}
+print(len(my_set)) # back to 4
+"""
+
+# other methods: clear(), pop(), etc
+# good reference:
+# https://www.geeksforgeeks.org/python-set-methods/
+
+# indexing and slicing do not work with sets
+# as in 
+#print(my_set[0]) # does not work
+
+# but pop() method does work
+"""
+print(my_set.pop()) # output: 1
+
+print(my_set) # output: {3, 4, 5}
+"""
+
+############### mid point exercise: 
+# # Get an item by index from the set using type conversion
+# use type convers to get one item from the set by index
+
+# typecasting ftw
+"""
+mysetToString = str(my_set)
+print(mysetToString)
+
+# typecasting ftw -  the list-en-ning
+mysetToList = list(my_set)
+print(mysetToList)
+
+print(mysetToList[1]) # output is a 4
+"""
+
+# main purpose of sets in python - 
+# sets are very good when it comes to comparisions
+
+# lots of ways to check if 2 sets have values in common or if they differ
+# set1.union(set2)
+# for instance
+
+# or
+# set1.intersection(set2)
+# creates new set with elements present in both sets 
+
+#################### comparison operators
+
+"""
+set1 = { 1,2,3,4,4 }
+set2 = { 4,5,6,7 }
+"""
+
+
+"""
+print(set1.union(set2)) # output: {1, 2, 3, 4, 5, 6, 7}
+"""
+
+# a ven diagram is good way to think of it
+# this is everything in overlapping
+"""
+print(set1.difference(set2)) # output {1, 2, 3}
+"""
+# instead of union - these are quite rarely used
+"""
+print(set1 | set2) # i think logical or... output: {1, 2, 3, 4, 5, 6, 7}
+print(set1 & set2) # output {4} # regular logical and?
+print(set1 - set2) # output {1, 2, 3}...same as that difference method output...
+"""
+
+
+############### another exercise: "check if the list as duplicate values using a set" "sets are rare in python"
+# this is type list, obviously
+"""
+test_list = [43,25,324,234,5,2,32423,542,534,324,23,54,65,323,42,4,123,123,5,1,321,3124,123,123,124,1,31,23,145,3542,43,3,21,312]
+print(len(test_list))
+LenOfTestlist = len(test_list)
+
+ListToSet = set(test_list)
+print(ListToSet)
+
+print(len(ListToSet))
+
+LenOfListtoset = len(ListToSet)
+
+if LenOfTestlist != LenOfListtoset:
+    print("Yes, there are duplicates")
+else:
+    print("No, there are not duplicates")
+
+"""
+
+
+################### booleans - 3h18m30s
