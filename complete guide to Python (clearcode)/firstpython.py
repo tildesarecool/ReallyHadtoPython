@@ -401,3 +401,89 @@ else:
 
 
 ################### booleans - 3h18m30s
+# might just fastforward through this section or just passively watch it...
+
+# examples...
+# isnum(), check if values present is lists, tuples, set or dict
+
+# print(1 == 1) # prints true
+# print(1 == 10) # prints false
+
+# booleans: lists/strings: evaluating with just a print statement
+"""
+print(1 in [1,2,3]) # true
+print(1 in (1,2,3)) # true
+print('e' in 'hello') # true
+print(4 not in [1,2,3]) # true
+"""
+
+# data conversion (typcasting) exercise
+e_dict = { 1:'one', 2:'two', 3:'three' }
+
+###
+# check if the key 1 exists in the dict
+#check if value 'four' exists in the dict
+###
+# "solve the 2 problems to check if a key or value is in the dict"
+# (pretending the contents of the dict are unknown)
+
+"""
+print(e_dict)
+
+print(list(e_dict))
+
+print(list(e_dict)[0])
+
+
+#print(1 in (list(e_dict)[0]))
+
+
+print(str(e_dict)[1])
+print(str(e_dict))
+
+print('1' in  (str(e_dict)))
+
+print('four' in  (str(e_dict)))
+
+## video solution
+
+print(1 in e_dict) # or print(1 in e_dict.keys) 
+
+print('four' in e_dict.values())
+
+"""
+
+
+############## bool as a function - 3h27m36s
+# bool() can accept any number, string, type of container and still return a value
+
+# can accept any data type
+
+# different rules are complex since data can converted in so many ways
+
+# "truthy" and "falsy" (converted to true or false)
+
+# falsy rules:
+# 0 or 0.0 (int or float) will become false
+# empty string
+# empty tuples/dicts/lists/sets
+"""
+print(bool(123123409823409823409802398408)) # returns true - any/all numbers besides 0 are true, including  neg
+"""
+# empty string or empty lists = false
+# non-empty is true
+
+# absense of value - datatype = None
+"""
+print(bool(None))
+"""
+
+############# more on data types - others are sequence
+#  bytes, complex numbers, memoryview
+
+# main datatypes:
+# int, float(), str(), bool(), list(), dict(), tuple(), set()
+
+############################# Flow control - 3h33m40s
+
+
