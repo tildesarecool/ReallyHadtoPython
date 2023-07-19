@@ -486,4 +486,15 @@ print(bool(None))
 
 ############################# Flow control - 3h33m40s
 
+# 4 major ways that determin the flow of the code:
+# if elif else
+# match
+# while
+# for
 
+
+# i'm already familiar with else/else if/elif so i'm skipping this exercise
+
+# same with the "complex if statemnents"
+
+# stopping at "nesting if statements" - 4h0m0s
