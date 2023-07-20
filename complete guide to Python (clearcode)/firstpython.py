@@ -498,3 +498,4 @@ print(bool(None))
 # same with the "complex if statemnents"
 
 # stopping at "nesting if statements" - 4h0m0s
+
