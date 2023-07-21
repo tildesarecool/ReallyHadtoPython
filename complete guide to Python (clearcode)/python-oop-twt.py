@@ -61,7 +61,7 @@ print(tim.weight) # returns 70
 '''
 ################# third video - inheritance #################
 
-
+'''
 class Dog(object):
     # the __initi__ will be defined in most if not all classes - this will automatically run every time type Dog is created
     def __init__(self, name, age):
@@ -74,7 +74,7 @@ class Dog(object):
 
     def talk(self): # must include 'self' so i t can access name and age
         print("Hi I am", self.name, 'and i am ', self.age, 'years old')
-
+'''
 '''
 class Cat(object):
         # this was all copy/pasted from the dog object
@@ -94,6 +94,7 @@ class Cat(object):
 
 '''
 
+'''
 class Cat(Dog): # used a specific object instenad of word 'object'
     # "derived from Dog"
     def __init__(self, name, age, color):
@@ -104,18 +105,60 @@ class Cat(Dog): # used a specific object instenad of word 'object'
         print('Meow')
 
 tim = Cat('tim', 5, 'blue')
+'''
+
 # prior - defining the cat object speak method: Hi I am tim and i am  5 years old
 #tim.speak() 
 
 # inherited attributes etc
 # much more useful in really long things
 # tim.speak would produce 'bark' so overload to say 'meow'
-
+'''
 # actually called the cat version 'talk'
 tim.talk() # this one produces 'meow', so it over-wrote the dog object talk method and used the Cat object talk method
-
+'''
 ########################
 # video 3 in playlist 
 # https://www.youtube.com/watch?v=H2SQrZK2nvM&list=PLzMcBGfZo4-l1MqB1zoYfqzlj_HH-ZzXt&index=3
 # 6m32s
 ########################
+'''
+jim = Dog('jim', 70)
+# demonstration over riding/inheritance
+jim.talk() # Hi I am jim and i am  70 years old
+'''
+
+# starting new class - this time smaller and more broad
+# so further classes can be derived that much easier
+
+class Vehicle():
+    def __init__(self, price, gas, color):
+        self.price = price
+        self.gas = gas
+        self.color = color 
+    
+    def fileUpTank(self):
+        self.gas = 100
+
+    def emtpyTank(self):
+        self.gas = 0
+
+    def gasLeft(self):
+        return self.gas
+
+class Car(Vehicle): # derived from vehical, obviously
+    def __init__(self, price, gas, color, speed):
+        super().__init__(price, gas, color)
+        self.speed = speed
+
+    def beep(self):
+        print('Beep beep')
+# could also inherit from car which in inherits from vehicle
+class Truck(Vehicle): # derived from vehical, obviously
+    def __init__(self, price, gas, color, tires):
+        super().__init__(price, gas, color)
+        self.tires = tires
+
+    def beep(self):
+        print('Honk honk')
+
