@@ -499,3 +499,67 @@ print(bool(None))
 
 # stopping at "nesting if statements" - 4h0m0s
 
+######################################################################
+
+# after breif stop over for a OOP playlist by "tech with tim" i'm back on this 11 hour video
+# "tech with tim" talks way too fast for me
+
+'''
+if 'a' in ['a', 'b']:
+    print('a is in the list') # output: a is in the list
+    if 'a'.isalpha():
+        print('it is a letter') # it is
+'''
+
+'''
+x = 'a'    
+if x in ['a', 'b', '1']:
+    print('a is in the list') # output: a is in the list
+    if x.isalpha():
+        print('it is a letter') # it is
+
+'''
+'''
+x = '1'
+if x in ['a', 'b', '1']:
+    print('a is in the list') # output: a is in the list
+    if x.isalpha():
+        print('it is a letter') # 1 is not
+        
+# exercise - "create a nested if statement that runs if all 3 conditions are true (money > 80 for the first one)"
+money_available = 100
+hungry = False
+bored = True
+
+# not exactly a taxing exercise, but great - moving on
+if money_available > 80:
+    if hungry == False:
+        if bored == True:
+            print("all of them are true")
+            
+'''
+
+# match case: 4h6m14s
+
+# similar to if statement - run if condition true, but for a set of values
+
+
+# alternative to if...elif...elif...
+#vscode has pointed out that 'match is a new feature for python 3.10
+# also, it looks a lot like a switch
+# guess i have no choice to move up to latest python or at least 3.10
+# i was just staying on 3.9 because that is what kivy works with/will not work with 3.10
+# but now apparently kivvy working with 3.10 anyway so I'll just upgrade to it, probably breaking everything else but here goes
+'''
+match mood:
+    case 'hungry':
+        #
+    case 'hired':
+        #
+    case 'bored':
+        #
+'''
+# 4h9m44s
+if mood == 'hungry':
+    print('get some food')
+    
