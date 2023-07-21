@@ -131,6 +131,7 @@ jim.talk() # Hi I am jim and i am  70 years old
 # starting new class - this time smaller and more broad
 # so further classes can be derived that much easier
 
+'''
 class Vehicle():
     def __init__(self, price, gas, color):
         self.price = price
@@ -161,4 +162,114 @@ class Truck(Vehicle): # derived from vehical, obviously
 
     def beep(self):
         print('Honk honk')
+
+'''
+
+
+################## video 4/6 - overloading existing python methods
+
+# matching page for video 4: https://www.techwithtim.net/tutorials/python-programming/classes-objects-in-python/overloading-methods
+
+'''
+class Point():
+    def __init__(self, x=0, y=0):
+        self.x = x
+        self.y = y
+        self.coords = (self.x, self.y)
+
+    def move(self, x, y):
+        self.x += x
+        self.y += y
+    
+    def __add__(self, p):
+        return Point(self.x + p.x, self.y + p.y)
+
+    def __sub__(self, p):
+        return Point(self.x - p.x, self.y - p.y)
+
+    def __mul__(self, p):
+        return Point(self.x * p.x + self.y * p.y)
+    
+    def __str__(self):
+        return "(" + str(self.x) + ',' + str(self.y) + ")"
+
+
+# some vars to test out examples
+
+p1 = Point(3,4)
+p2 = Point(3,2)
+p3 = Point(1,3)
+p4 = Point(0,1)
+
+p5 = p1 + p2
+p6 = p4 - p1
+p7 = p2 * p3
+
+print(p5, p6, p7) # long time getting there, but output: (6,6) (-3,-3) (9,0)
+'''
+
+#######################
+
+'''
+class Point():
+    def __init__(self, x=0, y=0):
+        self.x = x
+        self.y = y
+        self.coords = (self.x, self.y)
+
+    def move(self, x, y):
+        self.x += x
+        self.y += y
+    
+    def __add__(self, p):
+        return Point(self.x + p.x, self.y + p.y)
+
+    def __sub__(self, p):
+        return Point(self.x - p.x, self.y - p.y)
+
+    def __mul__(self, p):
+        return Point(self.x * p.x + self.y * p.y)
+
+    def length(self):
+        import math
+        return math.sqrt(self.x**2 + self.y**2) # the ** means 'to the power of' e.g. an exponent
+    
+    def __gt__(self, p):
+        return self.length() > p.length() # greater than
+    def __ge__(self, p): # greater than or equal to
+        return self.length() >= p.length()
+    def __lt__(self, p):
+        return self.length() < p.length()        
+    def __le__(self, p): # less than or equal to
+        return self.length() <= p.length()
+    def __eq__(self, p): # equal to
+        return self.x == p.x and self.y == p.y 
+    
+    def __str__(self):
+        return "(" + str(self.x) + ',' + str(self.y) + ")"
+
+
+# some vars to test out examples
+
+p1 = Point(3,4)
+p2 = Point(3,2)
+p3 = Point(1,3)
+p4 = Point(0,1)
+
+print(p1 == p2)
+print(p1 > p2)
+print(p4 <= p3)
+
+# output:
+#False
+#True
+#True
+
+# there's a list of python methods/functions than can be overriden, only those specific ones
+
+# this includes len or __len__
+# pretty much all of them with the double underscores
+'''
+
+################# video 5/6
 
