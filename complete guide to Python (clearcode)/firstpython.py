@@ -418,7 +418,7 @@ print(4 not in [1,2,3]) # true
 """
 
 # data conversion (typcasting) exercise
-e_dict = { 1:'one', 2:'two', 3:'three' }
+#e_dict = { 1:'one', 2:'two', 3:'three' }
 
 ###
 # check if the key 1 exists in the dict
@@ -560,6 +560,218 @@ match mood:
         #
 '''
 # 4h9m44s
-if mood == 'hungry':
-    print('get some food')
+
+
+#if mood == 'hungry':
+#    print('get some food')
+# 
+
+'''
+mood = 'bored'
+
+match mood:
+    case 'hungry':
+        print('get some food')
+    case 'thirsty':
+        print('get some water')
+    case 'tired':
+        print('get some sleep')
+    case _:
+        print('any other mood - default value if not matches')
+'''
+
+# exercise
+# create variable with an integer between 1 and 5, call it grade
+# create match/case that writes 'very good' when grade is 1
+# and 'very bad' when grade is between 2 and  5 
+# should be some default behaivor if you get an unexpected value
+
+# not exactly difficult. probably should have just skipped it. it's fine.
+# I did succefully upgrade to 3.11.4 and remove 3.9. 
+# still had to manually remove the variables for 3.9
+# and make sure pip still worked
+# actually i deleted that folder so i probably lost what ever i installed with pip for 3.9
+# but i'm sure it's fine
+
+'''
+
+grade = 's'
+
+match grade:
+    case 1:
+        print('very good')
+    case 2:
+        print('not as good')
+    case 3:
+        print('worse than 2')
+    case 4:
+        print('needs improvement')
+    case 5:
+        print('woe woe woe. bad')
+    case _:
+        print('have you ever heard the old robot saying DOES NOT COMPUTE') # without default it just wouldn't run
+        
+
+'''
+
+######################### while loop - 4h11m50s
+
+# easy example -
+'''
+x = 0
+while x < 10:
+    x += 1
+    print('loop')
+
+'''
+'''
+x = 0
+while x < 10:
+    x += 1
+    print(x)
+    if x == 5:
+        print('value is 5')
+'''
+
+# there's also keywords break and continue
+'''
+x = 0
+while x < 10:
+    x += 1
+    print(x)
+    if x == 5:
+        #break # just stops at 5
+        continue
+    print('value is 5')
+
+'''
+
+# exercise part 1:
+# use a while loop to create a list with only even values from 0 to 100
+# exercise part 2:
+# "do not add the value 58"
+
+
+# part 1 was incredibly easy
+'''
+evenList = []
+
+x = 0
+while x <= 100:
+    x += 1
+    if x % 2 == 0:
+        evenList.append(x)
+
+print(evenList)
+'''
+
+# wow, this part 2 wasn't exactly challenging. a simple and added to the condition? hmmm.
+'''
+evenList = []
+
+x = 0
+while x <= 100:
+    x += 1
+    if x % 2 == 0 and x != 58:
+        evenList.append(x)
+
+print(evenList)
+'''
+
+
+
+########################## For loops - 4h27m32s
+# i think this time i'll just jump to the exercise because wow is this boring
+# actually range function/object is more interesting
+#form:
+# for x in [1, 2, 3]:
+
+# example:
+#basic_list = [1,2,3]
+#for x in basic_list:
+#    print(x)
+# works with strings, lists, dictionaries, sets, etc
+
+# basic_set = {1,2,3}
+# for x in basic_set:
+#    print(x)
+
+#basic_dict = {1: 'one', 2: 'two', 3: 'three'}
+#for x in basic_dict.items(): # works with .items and .values for different results/tuple versus strings
+#    print(x)
+
+# for loops "need some kind of iterable"
+
+# this is where a "range" (which is its own data type) comes in, such as  
+# range(3) - creates a range object
+
+'''
+basic_num = 3
+for x in range(basic_num):
+    print(x)
+'''
+
+# output:
+# 0
+# 1
+# 2
+
+# range form:
+# print(range(start,end,step))
+# good example:
+# print(range(10,20,2))
+#    print(x)
+
+# exercise
+practice_list = [[10,40,20,50], [2,42,10], [101,10,4] ] # nested lists
+# use a for loop to only print the numbers below 50
+# skip values below 10
+# end the entire loop if a value is above 100
+# hint: use nested for loops, also at least one if statement
+
+#print(practice_list[0][1])
+
+
+'''
+x = 0
+y = 0
+z = 0
+#print(type(y))
+
+for x in practice_list[0]:
+    if x >= 10 and x <= 99:
+        print(f'value of x is {x}')
+        print('---')
+    for y in practice_list[1]:
+        if y >= 10 and y <= 99:
+            print(f'value of y is {y}')
+            print('---')
+
+    for z in practice_list[2]:
+        if z >= 10 and z <= 100:
+            print(f'value of z is {z}')
+            print('---')
+    #print(practice_list[0][0])
+    #x += 1
+    #if x != y:
+    #    pass
+    #print(type(len(practice_list)))
+    #print(practice_list)
+'''
     
+# well i sort of got
+# video solution:
+# I think i like his more
+'''
+for nested_list in practice_list:
+    for value in nested_list:
+        if value > 100:
+            break
+        if value < 50:
+            if value < 10:
+                continue
+            print(value)
+'''
+
+# seems like good place to stop
+# 04:42:42 - Flow + linebreaks
