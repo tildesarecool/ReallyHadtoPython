@@ -18,28 +18,15 @@ from pytube import YouTube as yt
 import os
 # import time
 
-
-
 #CURDIR = os.getcwd()
 #get_is_dir = os.path.isdir(curdir)
 #determine_if_path_exists = os.path.exists(curdir)
 
 # I'm going to try and make a CLI version, no tkinter
 
-def default_dl_folder():
-    ENV_VAR_UPROFILE = os.environ['USERPROFILE']
-    DOWNLOADS_FOLDER = "\Downloads"
-    #joined_path = ENV_VAR_UPROFILE.join(DOWNLOADS_FOLDER)
-    
-    joined_path = ENV_VAR_UPROFILE + DOWNLOADS_FOLDER
-    
-    # print(f"value of ENV_VAR_UPROFILE is {ENV_VAR_UPROFILE}")
-    # print(f"value of joined_path is {joined_path}")
-    
-    return joined_path
-
-
-DEFAULT_DL_DIR = default_dl_folder()
+ENV_VAR_UPROFILE = os.environ['USERPROFILE']
+DOWNLOADS_FOLDER = "\Downloads"
+DEFAULT_DL_DIR = ENV_VAR_UPROFILE + DOWNLOADS_FOLDER
 
 
 def validate_path(path):
@@ -72,7 +59,7 @@ def download_video(url, save_path):
         
         print("Video downloaded successfully!")
         print(f"download path is {save_path}")
-        print(f"Video downloaded to \"{save_path}{highest_res_stream.default_filename}\" ")
+        print(f"Video downloaded to \"{save_path}\\{highest_res_stream.default_filename}\" ")
         
         # print(f"The value that highest_res_stream.download(output_path=save_path) returns is {highest_res_stream.download(output_path=save_path)}")
         print(f"The value that highest_res_stream.download(output_path=save_path) returns is {file_info}")
