@@ -28,6 +28,9 @@ class AlienInvasion:
 
         self.screen = pygame.display.set_mode((1200, 800)) # ...creating a window. obviously.
         pygame.display.set_caption("Alien Invasion") # title bar title i assume? 
+
+        # setting bg color
+        self.bg_color = (230, 230, 230) # the three 230s are light grey...apparently
     
     def run_game(self): # boiler plate part 2
         # start game loop
@@ -36,6 +39,9 @@ class AlienInvasion:
             for event in pygame.event.get(): # wait 'round for events to fire
                 if event.type == pygame.QUIT:
                     sys.exit()
+
+            # Redraw screen during each pass through the loop
+            self.screen.fill(self.bg_color) # created above
 
             pygame.display.flip() # per book, "make most recently drawn screen visible"
             self.clock.tick(60) # this should set the fps to 60
