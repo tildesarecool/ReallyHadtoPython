@@ -10,6 +10,10 @@
 # refreshenv
 # finally upgraded pip and installed pygame. took a while. also set vscode to 3.12. 
 # which I assume it will forget
+# for installing pygame with pip the book says to use --user but I ended up doing it without that option
+# for upgrading pip 
+# python.exe -m pip install --upgrade pip
+# finally worked
 
 import sys, pygame
 
@@ -17,21 +21,21 @@ class AlienInvasion:
     # overall class to manage assets and behaviors etc
 
     def __init__(self):
-        # initialize game and create resources
+        # initialize game and create resources - boilerplate stuff
         pygame.init()
 
-        self.screen = pygame.display.set_mode((1200, 800))
-        pygame.display.set_caption("Alien Invasion")
+        self.screen = pygame.display.set_mode((1200, 800)) # ...creating a window. obviously.
+        pygame.display.set_caption("Alien Invasion") # title bar title i assume? 
     
-    def run_game(self):
+    def run_game(self): # boiler plate part 2
         # start game loop
         while True:
             # watch for kb and mouse events
-            for event in pygame.event.get():
+            for event in pygame.event.get(): # wait 'round for events to fire
                 if event.type == pygame.QUIT:
                     sys.exit()
 
-            pygame.display.flip()
+            pygame.display.flip() # per book, "make most recently drawn screen visible"
 
 if __name__ == '__main__':
     # make a game instance and run the game
