@@ -23,6 +23,8 @@ class AlienInvasion:
     def __init__(self):
         # initialize game and create resources - boilerplate stuff
         pygame.init()
+        self.clock = pygame.time.Clock() # setting the framerate - aim is for 60fps
+
 
         self.screen = pygame.display.set_mode((1200, 800)) # ...creating a window. obviously.
         pygame.display.set_caption("Alien Invasion") # title bar title i assume? 
@@ -36,6 +38,7 @@ class AlienInvasion:
                     sys.exit()
 
             pygame.display.flip() # per book, "make most recently drawn screen visible"
+            self.clock.tick(60) # this should set the fps to 60
 
 if __name__ == '__main__':
     # make a game instance and run the game
