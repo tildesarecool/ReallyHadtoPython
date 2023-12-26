@@ -16,6 +16,10 @@
 # finally worked
 
 import sys, pygame
+from settings import Settings
+
+#import settings from Settings # from other file
+
 
 class AlienInvasion:
     # overall class to manage assets and behaviors etc
@@ -24,9 +28,10 @@ class AlienInvasion:
         # initialize game and create resources - boilerplate stuff
         pygame.init()
         self.clock = pygame.time.Clock() # setting the framerate - aim is for 60fps
+        self.settings = Settings()
 
-
-        self.screen = pygame.display.set_mode((1200, 800)) # ...creating a window. obviously.
+        #self.screen = pygame.display.set_mode((1200, 800)) # ...creating a window. obviously.
+        self.screen = pygame.display.set_mode((self.settings.screen_width, self.setting.screen_height))
         pygame.display.set_caption("Alien Invasion") # title bar title i assume? 
 
         # setting bg color
@@ -41,7 +46,8 @@ class AlienInvasion:
                     sys.exit()
 
             # Redraw screen during each pass through the loop
-            self.screen.fill(self.bg_color) # created above
+            # self.screen.fill(self.bg_color) # created above
+            self.screen.fill(self.settings.bg_color) # created above - now imported from settings.py
 
             pygame.display.flip() # per book, "make most recently drawn screen visible"
             self.clock.tick(60) # this should set the fps to 60
