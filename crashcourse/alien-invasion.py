@@ -3,6 +3,7 @@
 import sys, pygame
 from settings import Settings
 from ship import Ship
+from bullet import Bullet
 
 # import pygame
 
@@ -27,6 +28,7 @@ class AlienInvasion:
         #self.screen = pygame.display.set_mode((1200, 800))
         pygame.display.set_caption("Alien Invasion")
         self.ship = Ship(self)
+        self.bullets = pygame.sprite.Group() # create a group that holds the bullets 
         # set background color
         #self.bg_color = (230,230,230)
         
@@ -43,8 +45,10 @@ class AlienInvasion:
     def run_game(self):    
         """start the main loop for the game"""
         while True:
+            # when the update() is called on a group the group automatically calls update() for each sprite in the group
             self._check_events()
             self.ship.update()
+            self.bullets.update() # update position of bullets on each pass through while loop
             self._update_screen()
             self.clock.tick(60) # related to consistent framerate - see also the self.clock line in the init function
             # Watch for keyboard and mouse events.
@@ -66,9 +70,8 @@ class AlienInvasion:
             self.ship.moving_left = True
         elif event.key == pygame.K_q:
             sys.exit()
-            # move ship to the right
-            # self.ship.rect.x += 1
-        # redraw screen during each pass through the loop
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet()
     
     def _check_keyup_events(self, event):
         """repsond to key releases"""
@@ -76,10 +79,17 @@ class AlienInvasion:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
+            
+    def _fire_bullet(self):
+        """create a new bullet and add it to the bullets group"""
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
     
     def _update_screen(self):
         """update images on screen and flip to the new screen"""
         self.screen.fill(self.settings.bg_color) # 230,230,230 = light gray
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
         self.ship.blitme()
                     
             # Make the most recently drawn screen visible
