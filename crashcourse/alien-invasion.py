@@ -48,7 +48,15 @@ class AlienInvasion:
             # when the update() is called on a group the group automatically calls update() for each sprite in the group
             self._check_events()
             self.ship.update()
+            self._update_bullets()
             self.bullets.update() # update position of bullets on each pass through while loop
+            
+            # get rid of bullets that have disappeared 
+            #for bullet in self.bullets.copy(): # going through each bullet in the bulllet...list? bullets created each time space bar used, anyway
+            #    if bullet.rect.bottom <= 0: # rect bottom:  the bullet is a rectangle, 0 is top of screen - this checks if bottom of bullet is out of visibility
+            #        self.bullets.remove(bullet)
+            # print(len(self.bullets)) # exists for debugging - should reduce to 0 once all the bullets have left the screen. verified as working so removed...
+            
             self._update_screen()
             self.clock.tick(60) # related to consistent framerate - see also the self.clock line in the init function
             # Watch for keyboard and mouse events.
@@ -82,8 +90,19 @@ class AlienInvasion:
             
     def _fire_bullet(self):
         """create a new bullet and add it to the bullets group"""
-        new_bullet = Bullet(self)
-        self.bullets.add(new_bullet)
+        if len(self.bullets) < self.settings.bullets_allowed: # arbitrarily limit number of bullets on screen at once (page 251) see also bullets.py
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
+    
+    def _update_bullets(self):
+        """update position of bullets and get rid of old bullets"""
+        # update bullet position
+        self.bullets.update()
+        
+        # get rid of bullets that have disappeared
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
     
     def _update_screen(self):
         """update images on screen and flip to the new screen"""
