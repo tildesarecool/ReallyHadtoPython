@@ -15,4 +15,6 @@ class Settings:
         self.bullet_height = 15
         self.bullet_color = (60, 60, 60) # 60, 60, 60 is "dark gray"
         self.bullets_allowed = 3 # arbitrarily limit number of bulets on screen at once (page 251)
+        # alien settings
+        self.alien_speed = 1.0
         
