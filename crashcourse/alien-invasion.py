@@ -115,6 +115,12 @@ class AlienInvasion:
         # per the book:
         # for a high powered bullet that can travel to the top of screen/destroy all enemies it encounters, set the first boolean to false
         # and keep the second boolean true.  would make that bullet active until it reached the top of the screen
+        
+        # part of spawning new fleet once fleet destroyed - pg. 268
+        if not self.aliens:
+            # destroy existing bullets and create new fleet
+            self.bullets.empty()
+            self._create_fleet()
     
     def _update_aliens(self):
         """update the positions of all aliens in the fleet"""
