@@ -111,6 +111,7 @@ class AlienInvasion:
     
     def _update_aliens(self):
         """update the positions of all aliens in the fleet"""
+        self._check_fleet_edges()
         self.aliens.update()
                 
     def _create_fleet(self):  # brought in for chapter 13 for the alien stuff - called above rungame method
@@ -145,7 +146,19 @@ class AlienInvasion:
         #new_alien.rect.x = current_x
         #self.aliens.add(new_alien)
         #current_x += 2 * alien_width           
+        
+    def _check_fleet_edges(self):
+        """respond appropriately if any aliens have reached an edge"""
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self._change_fleet_direction()
+                break
 
+    def _change_fleet_direction(self):
+        """drop the entire fleet and change the fleet's direction"""
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.fleet_drop_speed
+        self.settings.fleet_direction *= -1
     
     def _update_screen(self):
         """update images on screen and flip to the new screen"""
