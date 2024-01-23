@@ -108,6 +108,13 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+                
+        # check for any bullets that have hit aliens
+        # if so, get rid of teh bullet and the alien
+        collisions = pygame.sprite.groupcollide( self.bullets, self.aliens, True, True ) # added as part of bullets/collision, pg. 267
+        # per the book:
+        # for a high powered bullet that can travel to the top of screen/destroy all enemies it encounters, set the first boolean to false
+        # and keep the second boolean true.  would make that bullet active until it reached the top of the screen
     
     def _update_aliens(self):
         """update the positions of all aliens in the fleet"""
