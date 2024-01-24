@@ -34,8 +34,7 @@ class AlienInvasion:
         self.aliens = pygame.sprite.Group() # brought in for chapter 13 for the alien stuff
         
         self._create_fleet()  # brought in for chapter 13 for the alien stuff - helper method for lots of aliens
-        # set background color
-        #self.bg_color = (230,230,230)
+
         
 
 # This is the code for full screen, which looks terrible on my giant monitor - page 245 - after implementing it the books says (paraphrasing)
@@ -137,6 +136,9 @@ class AlienInvasion:
         if pygame.sprite.spritecollideany(self.ship, self.aliens): # spritecollideany - two arguments are a sprite and a sprite group: if the self.ship group collides with aliens group...hit
             # print("Ship hit!!!") # this was just here for testing
             self._ship_hit()
+        
+        # look for aliens hitting the bottom of the screen
+        self._check_aliens_bottom()
             
             
     def _ship_hit(self):
@@ -187,6 +189,14 @@ class AlienInvasion:
         #new_alien.rect.x = current_x
         #self.aliens.add(new_alien)
         #current_x += 2 * alien_width           
+    
+    def _check_aliens_bottom(self):
+        """check if any aliens have reached the bottom of the screen"""
+        # added pg 273/4 to check if fleet has reached bottom of screen
+        for alien in self.aliens.sprites():
+            if alien.rect.bottom >= self.settings.screen_height: # to spell this out: alien reaches bottom of screen when alien's rect.bottom value >= screen's height
+                self._ship_hit()
+                break
         
     def _check_fleet_edges(self):
         """respond appropriately if any aliens have reached an edge"""
