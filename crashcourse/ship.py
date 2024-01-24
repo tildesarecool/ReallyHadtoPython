@@ -55,3 +55,10 @@ class Ship:
     def blitme(self):
         """draw the ship at its current location"""
         self.screen.blit(self.image, self.rect)
+        
+    def center_ship(self): # added book page 273 as part of resetting when alien collides with ship
+        """center ship on the screen (horizontal/x)"""
+        self.rect.midbottom = self.screen_rect.midbottom
+        self.x = float(self.rect.x)
+
+        

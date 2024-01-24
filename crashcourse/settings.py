@@ -9,6 +9,7 @@ class Settings:
         self.bg_color = (230,230,230)
         # ship settings
         self.ship_speed = 4.5 # this actually only accepts ints so adjustments were made to ship.py
+        self.ship_limit = 3
         # bullet settings
         self.bullet_speed = 6.0
         self.bullet_width = 300 # default value = 3 - a good value for test is 300
@@ -17,6 +18,6 @@ class Settings:
         self.bullets_allowed = 9 # default value = 3 arbitrarily limit number of bulets on screen at once (page 251)
         # alien settings
         self.alien_speed = 1.0
-        self.fleet_drop_speed = 10
+        self.fleet_drop_speed = 100 # default value = 10 - setting this to 100 for debug purposes
         # fleet direction 1 represents right; -1 represents left
         self.fleet_direction = 1

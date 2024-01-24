@@ -1,12 +1,12 @@
 #  19 jan 2023
 #  alien invasion game from the book "python crash course"
 import sys, pygame
+from time import sleep # added page 272
 from settings import Settings
+from game_stats import GameStats
 from ship import Ship
 from bullet import Bullet
 from alien import Alien # modification for chapter 13 - bringing in the alien.py stuff
-
-# import pygame
 
 class AlienInvasion: 
     # Overall class to manage game assets and behavior 
@@ -22,12 +22,13 @@ class AlienInvasion:
             self.settings.screen_height
             )
         )
-        
-        
-        
-        
+
         #self.screen = pygame.display.set_mode((1200, 800))
         pygame.display.set_caption("Alien Invasion")
+        
+        # create instance to store game statistics
+        self.stats = GameStats(self)
+        
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group() # create a group that holds the bullets 
         self.aliens = pygame.sprite.Group() # brought in for chapter 13 for the alien stuff
@@ -109,13 +110,18 @@ class AlienInvasion:
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
                 
+        self._check_bullet_alien_collisions()
+                
         # check for any bullets that have hit aliens
         # if so, get rid of teh bullet and the alien
+    def _check_bullet_alien_collisions(self): # this method added as part of refactoring starting on page 269
+        """respond to bullet-alien collisions"""
+        #remove any bullets and aliens that have colided
         collisions = pygame.sprite.groupcollide( self.bullets, self.aliens, True, True ) # added as part of bullets/collision, pg. 267
         # per the book:
         # for a high powered bullet that can travel to the top of screen/destroy all enemies it encounters, set the first boolean to false
         # and keep the second boolean true.  would make that bullet active until it reached the top of the screen
-        
+
         # part of spawning new fleet once fleet destroyed - pg. 268
         if not self.aliens:
             # destroy existing bullets and create new fleet
@@ -126,6 +132,28 @@ class AlienInvasion:
         """update the positions of all aliens in the fleet"""
         self._check_fleet_edges()
         self.aliens.update()
+        
+        # look for alien ship collisions - pg 271
+        if pygame.sprite.spritecollideany(self.ship, self.aliens): # spritecollideany - two arguments are a sprite and a sprite group: if the self.ship group collides with aliens group...hit
+            # print("Ship hit!!!") # this was just here for testing
+            self._ship_hit()
+            
+            
+    def _ship_hit(self):
+        """respond to the ship being hit by an alien"""
+        # decrement ships left - method added per book pg 272
+        self.stats.ships_left -= 1
+        
+        # Get rid of any remaining bullets and aliens
+        self.bullets.empty()
+        self.aliens.empty()
+        
+        # create a new fleet and center the ship
+        self._create_fleet()
+        self.ship.center_ship()
+        # pause
+        sleep(0.5)
+        
                 
     def _create_fleet(self):  # brought in for chapter 13 for the alien stuff - called above rungame method
         """create the fleet of aliens"""
