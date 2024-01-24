@@ -35,7 +35,8 @@ class AlienInvasion:
         
         self._create_fleet()  # brought in for chapter 13 for the alien stuff - helper method for lots of aliens
 
-        
+        # start alien invasion in an inactive state
+        self.game_active = True # this addition correlates to edits in _ship_hit() below
 
 # This is the code for full screen, which looks terrible on my giant monitor - page 245 - after implementing it the books says (paraphrasing)
 # "but if that doesn't work good that keep the old code" - could have said that first!
@@ -51,10 +52,11 @@ class AlienInvasion:
         while True:
             # when the update() is called on a group the group automatically calls update() for each sprite in the group
             self._check_events()
-            self.ship.update()
-            self._update_bullets()
-            
-            self.bullets.update() # update position of bullets on each pass through while loop
+            if self.game_active: # added this if as part of "identifying when parts of the game should run" pg 275 - also indented method calls
+                self.ship.update()
+                self._update_bullets()
+                
+                self.bullets.update() # update position of bullets on each pass through while loop
             
             # get rid of bullets that have disappeared 
             #for bullet in self.bullets.copy(): # going through each bullet in the bulllet...list? bullets created each time space bar used, anyway
@@ -143,18 +145,21 @@ class AlienInvasion:
             
     def _ship_hit(self):
         """respond to the ship being hit by an alien"""
-        # decrement ships left - method added per book pg 272
-        self.stats.ships_left -= 1
-        
-        # Get rid of any remaining bullets and aliens
-        self.bullets.empty()
-        self.aliens.empty()
-        
-        # create a new fleet and center the ship
-        self._create_fleet()
-        self.ship.center_ship()
-        # pause
-        sleep(0.5)
+        if self.stats.ships_left > 0: # part of game over edits, pg 274 (also with all the indenting)
+            # decrement ships left - method added per book pg 272
+            self.stats.ships_left -= 1
+            
+            # Get rid of any remaining bullets and aliens
+            self.bullets.empty()
+            self.aliens.empty()
+            
+            # create a new fleet and center the ship
+            self._create_fleet()
+            self.ship.center_ship()
+            # pause
+            sleep(0.5)
+        else:
+            self.game_active = False
         
                 
     def _create_fleet(self):  # brought in for chapter 13 for the alien stuff - called above rungame method
