@@ -7,6 +7,8 @@ from game_stats import GameStats
 from ship import Ship
 from bullet import Bullet
 from alien import Alien # modification for chapter 13 - bringing in the alien.py stuff
+from button import Button
+from scoreboard import Scoreboard
 
 class AlienInvasion: 
     # Overall class to manage game assets and behavior 
@@ -26,8 +28,12 @@ class AlienInvasion:
         #self.screen = pygame.display.set_mode((1200, 800))
         pygame.display.set_caption("Alien Invasion")
         
+        # create an instance to store game statistics
+        # and create a scoreboard
+        
         # create instance to store game statistics
         self.stats = GameStats(self)
+        self.sb = Scoreboard(self)
         
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group() # create a group that holds the bullets 
@@ -36,7 +42,17 @@ class AlienInvasion:
         self._create_fleet()  # brought in for chapter 13 for the alien stuff - helper method for lots of aliens
 
         # start alien invasion in an inactive state
-        self.game_active = True # this addition correlates to edits in _ship_hit() below
+        #self.game_active = True # this addition correlates to edits in _ship_hit() below
+        
+        #start alien invasion in an inactive state - pg 278 says to make this inactive so can add title screen
+        # i assume i'm supposed to just edit this line to false
+        # the aliens are still animated with this false but the bullet from the ship fires and stays in place visible.
+        # not sure if that's what's supposed to happen but game active is false
+        self.game_active = False
+        
+        # make play button 
+        self.play_button = Button(self, "Play")
+        
 
 # This is the code for full screen, which looks terrible on my giant monitor - page 245 - after implementing it the books says (paraphrasing)
 # "but if that doesn't work good that keep the old code" - could have said that first!
@@ -75,7 +91,35 @@ class AlienInvasion:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
-                
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
+
+    def _check_play_button(self, mouse_pos):
+        """Start a new game when the player clicks Play"""
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        #if self.play_button.rect.collidepoint(mouse_pos):
+        if button_clicked and not self.game_active:
+            # reset the game settings
+            self.settings.initialize_dynamic_settings()
+            
+            # reset the game statistics 
+            self.stats.reset_stats()
+            self.sb.prep_score() # added pg 289
+            self.game_active = True
+            # get rid of any remaining bullets and alines
+            self.bullets.empty()
+            self.aliens.empty()
+            
+            # create a new fleet and center the ship
+            self._create_fleet()
+            self.ship.center_ship()
+            
+            #Hide the mouse cursor
+            pygame.mouse.set_visible(False)
+        
+        
+        
 # ################################################################ #
     def _check_keydown_events(self, event):
         '''respond to keypresses'''
@@ -122,12 +166,17 @@ class AlienInvasion:
         # per the book:
         # for a high powered bullet that can travel to the top of screen/destroy all enemies it encounters, set the first boolean to false
         # and keep the second boolean true.  would make that bullet active until it reached the top of the screen
+        if collisions: # if the collisions dictionary even exists
+            for aliens in collisions.values(): # go through the values in the dictionary
+                self.stats.score += self.settings.alien_points * len(aliens) # add score by points aliens are worth times how big that alien value is
+            self.sb.prep_score()
 
         # part of spawning new fleet once fleet destroyed - pg. 268
         if not self.aliens:
             # destroy existing bullets and create new fleet
             self.bullets.empty()
             self._create_fleet()
+            self.settings.increase_speed()
     
     def _update_aliens(self):
         """update the positions of all aliens in the fleet"""
@@ -160,6 +209,7 @@ class AlienInvasion:
             sleep(0.5)
         else:
             self.game_active = False
+            pygame.mouse.set_visible(True)
         
                 
     def _create_fleet(self):  # brought in for chapter 13 for the alien stuff - called above rungame method
@@ -223,8 +273,15 @@ class AlienInvasion:
             bullet.draw_bullet()
         self.ship.blitme()
         self.aliens.draw(self.screen) # added in chapter 13 to put the alien up on screen (pg. 258)
-                    
-            # Make the most recently drawn screen visible
+        
+        # draw the score information
+        self.sb.show_score()
+        
+        # Make the most recently drawn screen visible
+        # Draw the play button if the game is inactive
+        if not self.game_active:
+            self.play_button.draw_button()
+            
         pygame.display.flip()
 
                 

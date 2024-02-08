@@ -10,3 +10,5 @@ class GameStats:
         """Initialize statistics that can change during the game"""
         # this "left" refers to how many are left...not being on the left side...
         self.ships_left = self.settings.ship_limit
+        self.score = 0 # added for scorring system, pg. 386
+        
