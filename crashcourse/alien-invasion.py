@@ -106,6 +106,8 @@ class AlienInvasion:
             # reset the game statistics 
             self.stats.reset_stats()
             self.sb.prep_score() # added pg 289
+            self.sb.prep_level() # added pg. 295
+            self.sb.prep_ships()
             self.game_active = True
             # get rid of any remaining bullets and alines
             self.bullets.empty()
@@ -170,6 +172,7 @@ class AlienInvasion:
             for aliens in collisions.values(): # go through the values in the dictionary
                 self.stats.score += self.settings.alien_points * len(aliens) # add score by points aliens are worth times how big that alien value is
             self.sb.prep_score()
+            self.sb.check_high_score() # added in association with high score updates in scoreboard.py - pg. 293
 
         # part of spawning new fleet once fleet destroyed - pg. 268
         if not self.aliens:
@@ -177,6 +180,10 @@ class AlienInvasion:
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
+            
+            # increase level - as displayed on screen, pg. 295
+            self.stats.level += 1
+            self.sb.prep_level()
     
     def _update_aliens(self):
         """update the positions of all aliens in the fleet"""
@@ -196,7 +203,9 @@ class AlienInvasion:
         """respond to the ship being hit by an alien"""
         if self.stats.ships_left > 0: # part of game over edits, pg 274 (also with all the indenting)
             # decrement ships left - method added per book pg 272
+            # and update scoreboard (pg. 298)
             self.stats.ships_left -= 1
+            self.sb.prep_ships()
             
             # Get rid of any remaining bullets and aliens
             self.bullets.empty()
