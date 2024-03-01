@@ -42,14 +42,9 @@ class objShape(ABC):
         pass
         
 class objRect(objShape):
-    
-    def __init__(self ) -> None:
+    '''rectangle: color (three number tuple), x pos: single float, y pos: single float, width: float, height: float  '''
+    def __init__( self, color, xpos, ypos, width,height ) -> None:
         #super().__init__( self, self.color, self.xpos, self.ypos, self.width )
-        pass
-    
-    def _draw(self, color, xpos, ypos, width,height ):
-        '''rectangle: color (three number tuple), x pos: single float, y pos: single float, width: float, height: float  '''
-        #super()._draw()
         self.xpos, self.ypos = xpos, ypos
         self.y = ypos
         self.color = color
@@ -57,9 +52,9 @@ class objRect(objShape):
         self.height = height
         
         self.rect = pyg.Rect(xpos,ypos,width, height)
-
-
-
+    
+    def _draw(self):
+        #super()._draw()
         pyg.draw.rect(dsp,self.color, self.rect )
 
         
@@ -93,6 +88,7 @@ class objCircle(objShape):
     
 #pyg.draw.line(dsp, (0, 0, 0), (0, 400), (1024, 400), 10 )
 class objLine(objShape):
+    '''Line: color (three number tuple), start pos (two number tuple), end pos (two number tuple), width: integer for line thickness '''
     def __init__(self, color, startPos, endPos, width ) -> None:
         
     #super().__init__(color, xpos, ypos, radius )
@@ -105,8 +101,6 @@ class objLine(objShape):
 
         
     def _draw(self):
-        '''Line: color (three number tuple), start pos (two number tuple), end pos (two number tuple), width: integer for line thickness '''
-
         pyg.draw.line( dsp, self.color, self.startPos, self.endPos, self.width)
         
 
@@ -139,8 +133,8 @@ def game() -> None:
     #FirstRect = objRect(dsp,50,50,50)  #(dsp, (100,100), 50)
     #FirstRect._draw(dsp,(255,0,0),50,50,50)
     
-    firstRect = objRect()#._draw((244,0,0), 100, 100, 300, 10)
-    secRect = objRect() #((123,234,45), 10,790,15,15)
+    firstRect = objRect((244,0,0), 100, 100, 300, 10)
+    secRect = objRect((123,234,45), 10,790,15,15)
     firstCircle = objCircle((150,0,0), (300,300), 150 )
     firstLine = objLine((250,143,54), (900,300), (100,600), 5)
     
@@ -157,17 +151,11 @@ def game() -> None:
         dsp.fill((255,255,255))
         # draw a horizontal line
         #pyg.draw.line(dsp, (0, 0, 0), (0, 400), (1024, 400), 10 )
-        firstRect._draw((244,0,0), 100, 100, 300, 10) #._draw()
+        firstRect._draw()
         firstCircle._draw()
         firstLine._draw()
         
-        secRect._draw(
-                (123,234,45), 
-                10,
-                790,
-                15,
-                15
-            )
+        secRect._draw()
         
         
 
