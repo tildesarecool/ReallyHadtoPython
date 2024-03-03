@@ -105,7 +105,9 @@ class objLine(objShape):
 
         
     def _draw(self):
-        '''Line: color (three number tuple), start pos (two number tuple), end pos (two number tuple), width: integer for line thickness '''
+        '''
+        Line: color (three number tuple), start pos (two number tuple), end pos (two number tuple), width: integer for line thickness 
+        '''
 
         pyg.draw.line( dsp, self.color, self.startPos, self.endPos, self.width)
         

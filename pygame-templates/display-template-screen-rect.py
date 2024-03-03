@@ -18,6 +18,28 @@ clock = pyg.time.Clock()
 FPS = 60
 
 
+'''
+This could be more generic and/or just replacement
+
+class getSurfaceRect:
+    (triple quotes here)
+    Method get_screen_size takes in created surface and returns x and y of screen 
+    I think could return rectangle of any surface, really
+    Returns: 
+    (triple quotes here)
+    @classmethod
+    def get_surface_rect(cls, surf):
+        """
+        Get the rectangle of the Pygame display surface.
+        Returns: rectangle of surface passed in
+        """
+        # cls: In a class method, cls refers to the class itself 
+        # (similar to how self refers to the instance in instance methods). 
+        # It allows you to access class-level attributes and methods.        
+        return surf.get_rect()
+
+'''
+
 
 class ScreenUtils:
     '''Method get_screen_size takes in created surface and returns x and y of screen '''

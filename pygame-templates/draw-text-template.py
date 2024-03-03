@@ -2,7 +2,7 @@
 # this is continues from display template to draw some text to the screen    
 # I'm using 
 # https://www.youtube.com/watch?v=cGrOr5V0iqw
-# as a basis for a very basic display text to screen tempalte
+# as a basis for a very basic display text to screen template
 
 import pygame as pyg
 
