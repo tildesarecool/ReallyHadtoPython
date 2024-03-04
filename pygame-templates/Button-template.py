@@ -119,7 +119,7 @@ class Button(pyg.sprite.Sprite):
             
             
         
-ButtonGroup = Group()
+#ButtonGroup = Group()
 
 
 #getScreenRect = getSurfaceRect()
@@ -130,10 +130,10 @@ ButtonGroup = Group()
 buttonFont = pyg.font.Font(None, 36)
 
 okButton = Button(SCREEN_WIDTH // 2 - 75, SCREEN_HEIGHT // 2 - 37, 150, 75, pyg.Color('#c0c0c0'), "OK", buttonFont, dsp)
-ButtonGroup.add(okButton)
+#ButtonGroup.add(okButton)
 
 quitButton = Button(SCREEN_WIDTH // 2 - 75, SCREEN_HEIGHT // 2 + 100, 150, 75, pyg.Color('#c0c0c0'), "Quit", buttonFont, dsp)
-ButtonGroup.add(quitButton)
+#ButtonGroup.add(quitButton)
 
 
 #GenButton = Button()
@@ -176,16 +176,18 @@ def game() -> None:
                 pyg.quit()
                 return
             elif event.type == pyg.MOUSEMOTION:
-                for button in ButtonGroup:
-                    button.on_mouse_over(dsp)  # Pass dsp to on_mouse_over()
+                #for button in ButtonGroup:
+                    okButton.on_mouse_over(dsp)  # Pass dsp to on_mouse_over()
             elif event.type == pyg.MOUSEBUTTONDOWN:
                 if event.button == 1:  # Left mouse button
-                    for button in ButtonGroup:
-                        if button.rect.collidepoint(event.pos):
-                            button.on_click()
+                    #for button in ButtonGroup:
+                    #    if button.rect.collidepoint(event.pos):
+                    #        button.on_click()
+                    pass
 
         dsp.fill((255, 255, 255))
-        ButtonGroup.draw(dsp)
+        #ButtonGroup.draw(dsp)
+        okButton.draw(dsp)
         pyg.display.update()
         clock.tick(FPS)
 
