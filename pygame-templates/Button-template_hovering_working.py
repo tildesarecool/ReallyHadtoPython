@@ -15,9 +15,8 @@
 # 5 march 2024:
 # I've decided to start over again
 # hopefully this will be better than the last time
-# --
-# I did slightly better than last time but it still can't add buttons to a group() so I'm 
-# giving up on GPT and writting it myself
+# 
+# 
 
 
 
@@ -36,15 +35,13 @@ class Rectangle:
     def draw(self, surface):
         pyg.draw.rect(surface, self.color, self.rect)
 
-class Button(Sprite):
+class Button(Rectangle):
     '''
     Class for creating on screen buttons:
     rect, color, hover_color, callback
     '''
     def __init__(self, rect, color, hover_color, callback):
-        super().__init__()
-        self.rect = rect
-        self.color = color
+        super().__init__(rect, color)
         self.hover_color = hover_color
         self.callback = callback
         self.original_color = color
@@ -54,14 +51,12 @@ class Button(Sprite):
             if self.rect.collidepoint(event.pos):
                 self.callback()
 
-    def update_button(self):
+    def update(self):
         if self.rect.collidepoint(pyg.mouse.get_pos()):
             self.color = self.hover_color
         else:
             self.color = self.original_color
 
-    def draw(self, surface):
-        pyg.draw.rect(surface, self.color, self.rect)
 
 ###########################################
 pyg.init()
@@ -72,12 +67,9 @@ dsp = pyg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # also known as the "
 clock = pyg.time.Clock()
 FPS = 60
 
-button_group = Group()
-
   
 button = Button(pyg.Rect(100, 100, 200, 50), (0, 255, 0), (0, 200, 0), lambda: print("Button clicked"))
 
-button_group.add(button)
 
 #all_sprites = pyg.sprite.Group(button)
 
@@ -93,24 +85,18 @@ def game() -> None:
                 return
             button.handle_event(event)
 
-        for btn in button_group.sprites():
-            btn.update_button()
-        
-#       
-# 
-#  button.update()
+        button.update()
         dsp.fill((255, 255, 255))
         
 #        all_sprites.update()
 #        all_sprites.draw(dsp)
         
-        button_group.draw(dsp)
+        button.draw(dsp)
         
         pyg.display.flip()
 
         
         clock.tick(FPS)
-    pyg.quit()
 
 
 
