@@ -26,61 +26,116 @@ from pygame.sprite import Sprite
 
 from pygame.sprite import Group
 from abc import ABC, abstractmethod
-import sys
+#import sys
 
-class Rectangle:
-    def __init__(self, rect, color):
-        self.rect = rect
-        self.color = color
 
-    def draw(self, surface):
-        pyg.draw.rect(surface, self.color, self.rect)
-
-class Button(Sprite):
-    '''
-    Class for creating on screen buttons:
-    rect, color, hover_color, callback
-    '''
-    def __init__(self, rect, color, hover_color, callback):
-        super().__init__()
-        self.rect = rect
-        self.color = color
-        self.hover_color = hover_color
-        self.callback = callback
-        self.original_color = color
-
-    def handle_event(self, event):
-        if event.type == pyg.MOUSEBUTTONDOWN and event.button == 1:
-            if self.rect.collidepoint(event.pos):
-                self.callback()
-
-    def update_button(self):
-        if self.rect.collidepoint(pyg.mouse.get_pos()):
-            self.color = self.hover_color
-        else:
-            self.color = self.original_color
-
-    def draw(self, surface):
-        pyg.draw.rect(surface, self.color, self.rect)
-
-###########################################
 pyg.init()
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
+
+center_x = SCREEN_WIDTH // 2
+center_y = SCREEN_HEIGHT // 2
 
 dsp = pyg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # also known as the "surface"
 clock = pyg.time.Clock()
 FPS = 60
 
+
+class GameRect():
+#    def __init__(self, rect, color):
+#        self.rect = rect
+#        self.color = color
+
+    def __init__(self) -> None:
+        super().__init__(ABC)
+
+    @abstractmethod
+    def draw(self, color, xpos, ypos, width, height ):
+        self.xpos = ypos
+        self.ypos = xpos
+            
+        self.color = color
+        self.width = width
+        
+        self.height = height
+        
+
+        
+
+
+class Button(Sprite, GameRect):
+    '''
+    Class for creating on screen buttons:
+    rect, color, hover_color, callback
+    '''
+#    def _draw(self, rect, color, hover_color, callback):
+
+    def __init__(self) -> None:
+        super().__init__()
+        #super().__init__(GameRect)
+        #super().__init__(Sprite)
+        
+
+
+    def draw(self, xpos, ypos, original_color, hover_color,width, height):
+        '''
+        Class for drawing on screen buttons:
+        x position, 
+        y position, 
+        initial color (three number tuple), 
+        mouse over color (three number tuple)
+        width: float
+        height: float
+        '''
+        #super().__init__()
+        #self.rect = rect
+        #self.color = color
+        self.hover_color = hover_color
+        self.xpos = xpos
+        self.ypos = ypos
+        self.original_color = original_color
+        self.width = width
+        self.height = height
+        self.rect = pyg.Rect(0,0, self.width, self.height)
+        #self.rect.center = (center_x,center_y)
+        #self.rect = xpos, ypos, width, height
+        pyg.draw.rect(dsp, self.original_color, self.rect)
+
+#    def handle_event(self, event):
+#        if event.type == pyg.MOUSEBUTTONDOWN and event.button == 1:
+#            if self.rect.collidepoint(event.pos):
+#                self.callback()
+
+#    def update_button(self):
+#        if self.rect.collidepoint(pyg.mouse.get_pos()):
+#            self.color = self.hover_color
+#        else:
+#            self.color = self.original_color
+
+#    def draw(self, surface):
+#        pyg.draw.rect(surface, self.color, self.rect)
+
+###########################################
+
+
 button_group = Group()
 
   
-button = Button(pyg.Rect(100, 100, 200, 50), (0, 255, 0), (0, 200, 0), lambda: print("Button clicked"))
+btnOkay = Button() #._draw(
+                #pyg.Rect(100, 100, 200, 50), 
+                #(0, 255, 0), 
+                #(0, 200, 0), 
+           # )
 
-button_group.add(button)
+btnOkay_rect = btnOkay.rect
+
+#button_group.add(button)
 
 #all_sprites = pyg.sprite.Group(button)
 
+button_group.add(btnOkay)
+
+#button_group.
 
 def game() -> None:
     while True:
@@ -91,26 +146,23 @@ def game() -> None:
             elif event.type == pyg.KEYDOWN and event.key == pyg.K_q:
                 pyg.quit()
                 return
-            button.handle_event(event)
 
-        for btn in button_group.sprites():
-            btn.update_button()
-        
-#       
-# 
-#  button.update()
         dsp.fill((255, 255, 255))
+        #button_group.draw(dsp)
         
-#        all_sprites.update()
-#        all_sprites.draw(dsp)
+        for bttn in button_group:
+            bttn.draw(center_x, center_y, ('#C0C0C0'), ('#B0B0B0'), 200, 50)
+            #print(f"len of button group is  {len(button_group)}")
+            
         
-        button_group.draw(dsp)
+ #       button_group.draw(60, 60, ('#C0C0C0'), ('#B0B0B0'), 200, 50)
+        
         
         pyg.display.flip()
 
         
         clock.tick(FPS)
-    pyg.quit()
+#    pyg.quit()
 
 
 

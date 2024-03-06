@@ -5,6 +5,7 @@
 # as a basis for a very basic display setup and line/circle draw in in pygame
 
 import pygame as pyg
+from pygame.sprite import Group
 
 # Import the abc module to define abstract classes and methods
 # I got this from the cheat sheet I've been using
@@ -48,7 +49,9 @@ class objRect(objShape):
         pass
     
     def _draw(self, color, xpos, ypos, width,height ):
-        '''rectangle: color (three number tuple), x pos: single float, y pos: single float, width: float, height: float  '''
+        '''
+        rectangle: color (three number tuple), x pos: single float, y pos: single float, width: float, height: float  
+        '''
         #super()._draw()
         self.xpos, self.ypos = xpos, ypos
         self.y = ypos
@@ -145,6 +148,10 @@ def game() -> None:
     secRect = objRect() #((123,234,45), 10,790,15,15)
     firstCircle = objCircle((150,0,0), (300,300), 150 )
     firstLine = objLine((250,143,54), (900,300), (100,600), 5)
+    
+    rectGroup = Group()
+    
+    rectGroup.add(firstRect, secRect)
     
     while True:
         for event in pyg.event.get():
