@@ -10,6 +10,12 @@ SCREEN_HEIGHT = 600
 center_x = SCREEN_WIDTH // 2
 center_y = SCREEN_HEIGHT // 2
 
+SILVER: str = '#C0C0C0'
+BLACK: str = '#000000'
+GREY: str = '#808080'
+GREEN: str = '#008000'
+
+
 dsp = pyg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # also known as the "surface"
 clock = pyg.time.Clock()
 FPS = 60
@@ -39,12 +45,13 @@ class GameRect(ABC):
         
         
 class Button(GameRect, Sprite):
-    def __init__(self, xpos, ypos, width, height, original_color, hover_color='#808080') -> None:    
+    def __init__(self, xpos, ypos, width, height, original_color, hover_color=GREY) -> None:    
         super().__init__(xpos, ypos, width, height, original_color)
         Sprite.__init__(self)  # Initialize Sprite class
 
         self.hover_color = hover_color
-        
+        self.original_color = original_color
+        self.cur_color = self.original_color
         
         xpos = (SCREEN_WIDTH - width) // 2
         ypos = (SCREEN_HEIGHT - height) // 2
@@ -52,35 +59,51 @@ class Button(GameRect, Sprite):
 
 
     
-    def draw(self, caption, text_color='#000000',  font=None):
+    def draw(self, caption, text_color=BLACK,  font=None):
         self.font = font   
         self.caption = caption     
         rect = self.draw_rect()
-        
 
+        self.prepCaption(caption, rect,text_color, 30)
+        self.check_click(rect)
         
-        #rect.center = (center_x, center_y) # <-- positioning of caption inside button
-        
-        self.prepCaption(caption, rect,text_color)
-
-        
-        #self.text_color = text_color
-
-        #self.hover_color = hover_color
-        
-    def prepCaption(self, caption, rect, text_color):
+    def prepCaption(self, caption, rect, text_color, text_size):
 #        self.caption = caption
         #rect = self.draw_rect()
-        font_obj = pyg.font.Font(self.font, 20)
+        font_obj = pyg.font.Font(self.font, text_size)
         text_surface = font_obj.render(caption, True, text_color, self.original_color)
         text_rect = text_surface.get_rect(center=rect.center)
         dsp.blit(text_surface,text_rect)
+        
+    def check_click(self, rect):
+        mouse_pos = pyg.mouse.get_pos()
+        #if self.top_rect.collidepoint(mouse_pos):
+        if self.rect.collidepoint(mouse_pos):
+            #self.hover_color = '#D74B4B'
+            self.cur_color == self.hover_color
+            print("collide")
+            #if pyg.mouse.get_pressed()[0]:
+            if pyg.MOUSEBUTTONUP == 0:
+#                self.dynamic_elevation = 0
+                self.pressed = True
+                print("mouse released")
+            else:
+ #               self.dynamic_elevation = self.elevation
+                if self.pressed == True:
+                    print('click')
+                    self.pressed = False
+                    
+        else:
+#            self.dynamic_elevation = self.elevation
+            #self.hover_color = '#475F77'
+            self.cur_color = self.original_color
+        
         
     
 btnGroup = Group()
 
 
-okButton = Button(center_x, center_y + 10, 150, 50, '#C0C0C0')
+okButton = Button(center_x, center_y + 10, 150, 50, SILVER)
 #btnGroup.add(okButton)
 okButton.ypos -= (okButton.height * 2)
 
@@ -125,8 +148,8 @@ def game() -> None:
         dsp.fill((255, 255, 255))
         #button_group.draw(dsp)
         
-        okButton.draw("Okay", ('#000000'),  None)
-        cancelButton.draw("Cancel",('#000000'),  None)
+        okButton.draw("Okay", (BLACK),  None)
+        cancelButton.draw("Cancel",(BLACK),  None)
         #okButton.draw("Arial")
         #okButton.prepCaption()
 
