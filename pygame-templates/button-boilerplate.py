@@ -14,6 +14,8 @@ SILVER: str = '#C0C0C0'
 BLACK: str = '#000000'
 GREY: str = '#808080'
 GREEN: str = '#008000'
+WHITE: str = 'FFFFFF'
+
 
 
 dsp = pyg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # also known as the "surface"
@@ -24,8 +26,6 @@ class GameRect(ABC):
     '''A very generic shape Rectangle'''
 
     def __init__(self, xpos, ypos, width, height, original_color) -> None:
-        #self.xpos = xpos 
-        #self.ypos = ypos
         self.xpos, self.ypos = xpos, ypos
         self.width = width
         self.height = height
@@ -46,6 +46,9 @@ class GameRect(ABC):
         
 class Button(GameRect, Sprite):
     def __init__(self, xpos, ypos, width, height, original_color, hover_color) -> None:    
+        '''
+        Button class: generic class for any necessary buttons
+        '''
         super().__init__(xpos, ypos, width, height, original_color)
         Sprite.__init__(self)  # Initialize Sprite class
 
@@ -56,11 +59,11 @@ class Button(GameRect, Sprite):
         
         xpos = (SCREEN_WIDTH - width) // 2
         ypos = (SCREEN_HEIGHT - height) // 2
-        
-
-
     
     def draw(self, caption, text_color=BLACK,  font=None):
+        '''
+        Drawing the button: unique text for each button
+        '''
         self.font = font   
         self.caption = caption     
         self.rect = self.draw_rect()
@@ -71,61 +74,44 @@ class Button(GameRect, Sprite):
         self.check_hover(self.rect)
         
     def prepCaption(self, caption, rect, text_color, text_size):
-#        self.caption = caption
-        #rect = self.draw_rect()
+        '''
+        Creating the font object, text surface and text rectangle
+        then blitting it to the screen/window
+        '''
         font_obj = pyg.font.Font(self.font, text_size)
         text_surface = font_obj.render(caption, True, text_color, self.original_color)
         text_rect = text_surface.get_rect(center=rect.center)
         dsp.blit(text_surface,text_rect)
         
     def check_click(self, rect):
+        '''
+        Registering the left mouse button click
+        '''
         mouse_pos = pyg.mouse.get_pos()
         if self.rect.collidepoint(mouse_pos):
 
             if pyg.mouse.get_pressed()[0]:
                 self.pressed = True
-            #if pyg.MOUSEBUTTONUP == 0:
-    #                self.dynamic_elevation = 0
-                #self.pressed = True
-                
             else:
                 if self.pressed:
                     print("mouse released")
                     self.pressed = False
-                
- #               self.dynamic_elevation = self.elevation
-                #if self.pressed == True:
-                #    print('click')
-                #    self.pressed = False
-                    
-        #else:
-    #            self.dynamic_elevation = self.elevation
-            #self.hover_color = '#475F77'
-         #   self.cur_color = self.original_color
-    
+
     def check_hover(self, rect):
+        '''
+        Registering a mouse hover-over
+        '''
         mouse_pos = pyg.mouse.get_pos()
         if self.rect.collidepoint(mouse_pos):
             self.original_color = self.hover_color
-            #self.hover_color = '#D74B4B'
-            #self.cur_color
-            #self.cur_color = self.hover_color
-            #print("collide")
-            #print(f"current color is {self.cur_color}")
-            #print(f"hover color is {self.hover_color}")
+
         elif not self.rect.collidepoint(mouse_pos):
             self.original_color = self.cur_color
-        #    print(f"current color is {self.cur_color}")
-        #    print(f"hover color is {self.hover_color}")
-        #    rect.cur_color = self.original_color
-        
-        
-    
+
 btnGroup = Group()
 
-
 okButton = Button(center_x, center_y + 10, 150, 50, SILVER,GREY)
-#btnGroup.add(okButton)
+
 okButton.ypos -= (okButton.height * 2)
 
 cancelButton = Button(
@@ -133,28 +119,24 @@ cancelButton = Button(
     okButton.ypos + 100, 
     okButton.width, 
     okButton.height, 
-    #'#008000',
     SILVER,
     GREY    
     )
 
-btnGroup.add(okButton, cancelButton)
+
+quitButton = Button(
+    cancelButton.xpos, 
+    cancelButton.ypos + 100, 
+    cancelButton.width, 
+    cancelButton.height, 
+    SILVER,
+    GREY    
+    )
 
 
-#getOkbtnYpos = okButton.ypos
-#print(f"ok button y pos is {getOkbtnYpos}")
+btnGroup.add(okButton, cancelButton, quitButton)
 
-#okButton.draw_rect().center = (center_x, center_y)
-#okButton.ypos = center_y
 
-#okButton.draw_rect().center = (center_x,center_y)
-
-#okButton.draw()
-#okButton.test_values()
-
-#newRect.draw(('#C0C0C0'), 0,0, 150, 50)
-
-#newRect.rect.center = (center_x, center_y)
 
 def game() -> None:
     while True:
@@ -167,28 +149,13 @@ def game() -> None:
                 return
 
         dsp.fill((255, 255, 255))
-        #button_group.draw(dsp)
         
         okButton.draw("Okay", (BLACK),  None)
         cancelButton.draw("Cancel",(BLACK),  None)
-        #okButton.draw("Arial")
-        #okButton.prepCaption()
+        quitButton.draw("Quit",(BLACK),  None)
 
-
-#        for bttn in button_group:
-#            bttn.draw(center_x, center_y, ('#C0C0C0'), ('#B0B0B0'), 200, 50)
-            #print(f"len of button group is  {len(button_group)}")
-            
-        
- #       button_group.draw(60, 60, ('#C0C0C0'), ('#B0B0B0'), 200, 50)
-        
-        
         pyg.display.flip()
-
         
         clock.tick(FPS)
-    
-    
-    
-    
+
 game()
