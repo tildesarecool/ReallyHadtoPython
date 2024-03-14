@@ -9,119 +9,67 @@
 
 
 import pygame as pyg
-from GetWindowRect import GetWindowRect
+from pygame.sprite import Sprite, Group
+
 from abc import ABC, abstractmethod
 
-
-
 pyg.init()
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
 
-dsp = pyg.display.set_mode(
-    (
-        1000, 
-        800
-    )
-) # also known as the "surface"
+center_x = SCREEN_WIDTH // 2
+center_y = SCREEN_HEIGHT // 2
+
+SILVER: str = '#C0C0C0'
+BLACK: str = '#000000'
+GREY: str = '#808080'
+GREEN: str = '#008000'
+WHITE: str = 'FFFFFF'
+
+
+
+dsp = pyg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # also known as the "surface"
 clock = pyg.time.Clock()
 FPS = 60
 
-ACCELLERATION = 0.5
+class GameRect(ABC):
+    '''A very generic shape Rectangle'''
 
-screen_rect = GetWindowRect.get_screen_rect(dsp)
-window_width = screen_rect.width
-window_height = screen_rect.height
-
-
-class objShape(ABC):
-    '''A very generic shape class'''
-    # as mentioned above apparently this is a thing.
-    # I'd like to just write the one draw method and apply it to all shape classes so this syntax seemed perfect    
+    def __init__(self, xpos, ypos, width, height, original_color) -> None:
+        self.xpos, self.ypos = xpos, ypos
+        self.width = width
+        self.height = height
+        self.original_color = original_color
     
-    #def __init__(self) -> None:
-
+    def draw_rect(self):
+        self.rect = pyg.Rect(self.xpos, self.ypos, self.width, self.height)
+        self.rect.centerx = self.xpos
+        self.rect.centery = self.ypos
+        pyg.draw.rect(dsp, self.original_color, self.rect)
+        
+        return self.rect
     
     @abstractmethod
-    def _draw(self, color, xpos, ypos, width ):
-        self.xpos, self.ypos = xpos, ypos
-            
-        self.color = color
-        self.width = width
+    def draw(self):
         pass
-        
-        '''
-class objRect(objShape):
-    #rectangle: color (three number tuple), x pos: single float, y pos: single float, width: float, height: float  #
-    def __init__( self, color, xpos, ypos, width,height ) -> None:
-        #super().__init__( self, self.color, self.xpos, self.ypos, self.width )
-        self.xpos, self.ypos = xpos, ypos
-        self.y = ypos
-        self.color = color
-        self.width = width
-        self.height = height
-        
-        self.rect = pyg.Rect(xpos,ypos,width, height)
-    
-    def _draw(self):
-        #super()._draw()
-        pyg.draw.rect(dsp,self.color, self.rect )
-        '''
-
-
-class objRect(objShape):
-    '''rectangle: color (three number tuple), x pos: single float, y pos: single float, width: float, height: float  '''
-    def __init__(self ) -> None:
-        #super().__init__( self, self.color, self.xpos, self.ypos, self.width )
-        pass
-    
-    def _draw(self, color, xpos, ypos, width,height ):
-        #super()._draw()
-        self.xpos, self.ypos = xpos, ypos
-        self.y = ypos
-        self.color = color
-        self.width = width
-        self.height = height
-        
-        self.rect = pyg.Rect(xpos,ypos,width, height)
-
-
-
-        pyg.draw.rect(dsp,self.color, self.rect )
     
 
 def game() -> None:
-    #FirstCircle = objCircle(100, 100, (255,0,0), 15)
-    #FirstRect = objRect(dsp,50,50,50)  #(dsp, (100,100), 50)
-    #FirstRect._draw(dsp,(255,0,0),50,50,50)
-    
-    firstRect = objRect()#._draw((244,0,0), 100, 100, 300, 10)
-    #secRect = objRect._draw((123,234,45), 10,790,15,15)
-    #firstCircle = objCircle._draw((150,0,0), (300,300), 150 )
-    #firstLine = objLine._draw((250,143,54), (900,300), (100,600), 5)
-    
     while True:
         for event in pyg.event.get():
             if event.type == pyg.QUIT:
+                    pyg.quit()
+                    return
+            elif event.type == pyg.KEYDOWN and event.key == pyg.K_q:
+                pyg.quit()
                 return
-            if event.type == pyg.KEYDOWN and event.key == pyg.K_q:
-                return
-        #ball.move()
-            
-            
-##########################################################################            
-        dsp.fill((255,255,255))
-        # draw a horizontal line
-        #pyg.draw.line(dsp, (0, 0, 0), (0, 400), (1024, 400), 10 )
-        firstRect._draw((244,0,0), 100, 100, 300, 10) #._draw()
-        #firstCircle._draw()
-        #firstLine._draw()
-        
-        #secRect._draw()
-        
-        
 
-        #ball.draw()
-        pyg.display.update()
+        dsp.fill((255, 255, 255))
+
+
+
+        pyg.display.flip()
+        
         clock.tick(FPS)
 
-game()    
-pyg.quit()
+game()
