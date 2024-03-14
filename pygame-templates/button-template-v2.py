@@ -45,7 +45,7 @@ class GameRect(ABC):
         
         
 class Button(GameRect, Sprite):
-    def __init__(self, xpos, ypos, width, height, original_color, hover_color=GREY) -> None:    
+    def __init__(self, xpos, ypos, width, height, original_color=SILVER, hover_color=GREY) -> None:    
         super().__init__(xpos, ypos, width, height, original_color)
         Sprite.__init__(self)  # Initialize Sprite class
 
@@ -60,6 +60,7 @@ class Button(GameRect, Sprite):
 
     
     def draw(self, caption, text_color=BLACK,  font=None):
+        
         self.font = font   
         self.caption = caption     
         rect = self.draw_rect()
@@ -78,20 +79,22 @@ class Button(GameRect, Sprite):
     def check_click(self, rect):
         mouse_pos = pyg.mouse.get_pos()
         #if self.top_rect.collidepoint(mouse_pos):
-        if self.rect.collidepoint(mouse_pos):
+        if rect.collidepoint(mouse_pos):
             #self.hover_color = '#D74B4B'
             self.cur_color == self.hover_color
             print("collide")
-            #if pyg.mouse.get_pressed()[0]:
-            if pyg.MOUSEBUTTONUP == 0:
+            print(pyg.MOUSEBUTTONUP)
+            if pyg.mouse.get_pressed()[0]:
+            #if pyg.MOUSEBUTTONUP == 0:
 #                self.dynamic_elevation = 0
-                self.pressed = True
+                #self.pressed = True
                 print("mouse released")
             else:
+                pass
  #               self.dynamic_elevation = self.elevation
-                if self.pressed == True:
-                    print('click')
-                    self.pressed = False
+                #if self.pressed == True:
+                #    print('click')
+                #    self.pressed = False
                     
         else:
 #            self.dynamic_elevation = self.elevation
