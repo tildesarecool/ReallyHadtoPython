@@ -6,6 +6,7 @@
 
 import pygame as pyg
 from pygame.sprite import Group
+from pygame.sprite import Sprite
 
 # Import the abc module to define abstract classes and methods
 # I got this from the cheat sheet I've been using
@@ -26,12 +27,14 @@ FPS = 60
 
 ACCELLERATION = 0.5
 
-class objShape(ABC):
+class objShape(ABC, Sprite):
     '''A very generic shape class'''
     # as mentioned above apparently this is a thing.
     # I'd like to just write the one draw method and apply it to all shape classes so this syntax seemed perfect    
     
-    #def __init__(self) -> None:
+    def __init__(self) -> None:
+        #Sprite.__init__()
+        super().__init__(Sprite)
 
     
     @abstractmethod
@@ -149,9 +152,9 @@ def game() -> None:
     firstCircle = objCircle((150,0,0), (300,300), 150 )
     firstLine = objLine((250,143,54), (900,300), (100,600), 5)
     
-    rectGroup = Group()
+    #rectGroup = Group()
     
-    rectGroup.add(firstRect, secRect)
+    #rectGroup.add(firstRect, secRect)
     
     while True:
         for event in pyg.event.get():
