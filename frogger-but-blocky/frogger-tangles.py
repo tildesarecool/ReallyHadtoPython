@@ -24,8 +24,8 @@ from frog import Frog
 pyg.init()
 
 
-center_x = SCREEN_WIDTH // 2
-center_y = SCREEN_HEIGHT // 2
+center_x = SCREEN_WIDTH / 2
+center_y = SCREEN_HEIGHT / 2
 
 dsp = pyg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # also known as the "surface"
 clock = pyg.time.Clock()
