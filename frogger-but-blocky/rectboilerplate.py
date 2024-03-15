@@ -25,7 +25,8 @@ class GameRect(ABC):
         self.color = color
     
     def draw_rect(self):
-        self.rect = pyg.Rect(self.xpos, self.ypos, self.width, self.height)
+        pyg.Rect()
+        self.rect = pyg.Rect((self.xpos, self.ypos), (self.width, self.height))
         self.rect.centerx = self.xpos
         self.rect.centery = self.ypos
         pyg.draw.rect(dsp, self.color, self.rect)

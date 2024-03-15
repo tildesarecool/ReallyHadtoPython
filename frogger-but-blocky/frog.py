@@ -1,29 +1,31 @@
-import rectboilerplate
+#import rectboilerplate
 from rectboilerplate import GameRect
 
-import pygame as pyg
+#import pygame as pyg
 
 from pygame.sprite import Sprite
 
-
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
 #GREEN: str = '#008000'
 
 class Frog(GameRect, Sprite): 
-    def __init__(self, xpos, ypos, width, height, frogColor) -> None:
+    def __init__(self, xpos, ypos, width, height, color) -> None:
         GREEN: str = '#008000'
-        super().__init__(self)
         Sprite.__init__(self)
-        self.xpos: int = xpos, 
-        self.ypos: int = ypos, 
-        self.width: int = width, 
-        self.height: int = height, 
-        self.frogColor = frogColor
+        super().__init__(xpos, ypos, width, height, color)
 
-        self.frogColor = GREEN
-        frogColor = GREEN
+        self.xpos = xpos, 
+        self.ypos = ypos, 
+        self.width = width, 
+        self.height = height, 
+        self.color = color
 
-        xpos = (SCREEN_WIDTH // 2)
-        ypos = (SCREEN_HEIGHT - 100 )
+        #self.frogColor = GREEN
+        #frogColor = GREEN
+
+#        xpos = (SCREEN_WIDTH // 2)
+#        ypos = (SCREEN_HEIGHT - 100 )
 
 
 

@@ -11,6 +11,8 @@ GREY: str = '#808080'
 GREEN: str = '#008000'
 WHITE: str = 'FFFFFF'
 
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
 
 import pygame as pyg
 
@@ -20,8 +22,7 @@ from pygame.sprite import Group
 from frog import Frog
 
 pyg.init()
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+
 
 center_x = SCREEN_WIDTH // 2
 center_y = SCREEN_HEIGHT // 2
@@ -30,11 +31,8 @@ dsp = pyg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # also known as the "
 clock = pyg.time.Clock()
 FPS = 60
 
-
-frogger = Frog(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 10, 100,  100, GREEN)
-
-
-
+froggie = Frog(500,500,100,100,GREEN)
+#frogger = Frog(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 10, 100,  100, GREEN)
 
 def game() -> None:
     while True:
@@ -50,7 +48,7 @@ def game() -> None:
 
 
  #       frogger.draw()
-
+        froggie.draw()
 
 
         pyg.display.flip()        
