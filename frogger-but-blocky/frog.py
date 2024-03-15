@@ -11,7 +11,6 @@ SCREEN_HEIGHT = 600
 
 class Frog(GameRect, Sprite): 
     def __init__(self, xpos, ypos, width, height, color) -> None:
-        GREEN: str = '#008000'
         Sprite.__init__(self)
         super().__init__(xpos, ypos, width, height, color)
 
@@ -34,7 +33,7 @@ class Frog(GameRect, Sprite):
         '''
         Drawing the frog: start at bottom/middle
         '''
-        self.rect = self.draw_rect()
+        self.rect = self.draw_rect() #self.draw_rect()
         
     def update(self):
 
