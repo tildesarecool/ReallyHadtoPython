@@ -5,7 +5,7 @@
 # 29 Feb 2024 (it's a leap year)
 
 import importlib
-module_name = "frogger_but_blocky.frogger_tangles"
+module_name = "frogger_but_blocky"
 module = importlib.import_module(module_name)
 
 

@@ -2,7 +2,7 @@
 #from pygame.sprite import Sprite
 
 import importlib
-module_name = "frogger_but_blocky.frogger_tangles"
+module_name = "frogger_but_blocky"
 module = importlib.import_module(module_name)
 
 from abc import ABC, abstractmethod
