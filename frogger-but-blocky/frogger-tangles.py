@@ -4,17 +4,16 @@
 # https://www.youtube.com/watch?v=c6WdJltqEtM
 # 29 Feb 2024 (it's a leap year)
 
-BLACK: str = '#000000'
-SILVER: str = '#C0C0C0'
-BLACK: str = '#000000'
-GREY: str = '#808080'
-GREEN: str = '#008000'
-WHITE: str = 'FFFFFF'
+import importlib
+module_name = "frogger_but_blocky.frogger_tangles"
+module = importlib.import_module(module_name)
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
 
-import pygame as pyg
+
+#SCREEN_WIDTH = 800
+#SCREEN_HEIGHT = 600
+
+#import pygame as pyg
 
 from pygame.sprite import Group
 
@@ -31,7 +30,7 @@ dsp = pyg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # also known as the "
 clock = pyg.time.Clock()
 FPS = 60
 
-froggie = Frog(500,500,100,100,GREEN)
+froggie = Frog(500,500,50,50,GREEN)
 #frogger = Frog(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 10, 100,  100, GREEN)
 
 def game() -> None:

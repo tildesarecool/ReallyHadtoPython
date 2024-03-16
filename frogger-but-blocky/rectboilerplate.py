@@ -1,23 +1,28 @@
-import pygame as pyg
-from pygame.sprite import Sprite
+#import pygame as pyg
+#from pygame.sprite import Sprite
+
+import importlib
+module_name = "frogger_but_blocky.frogger_tangles"
+module = importlib.import_module(module_name)
+
 from abc import ABC, abstractmethod
 
-pyg.init()
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+#pyg.init()
+#SCREEN_WIDTH = 800
+#SCREEN_HEIGHT = 600
 
 #center_x = SCREEN_WIDTH // 2
 #center_y = SCREEN_HEIGHT // 2
 
 BLACK: str = '#000000'
 
-dsp = pyg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # also known as the "surface"
+#dsp = pyg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # also known as the "surface"
 #clock = pyg.time.Clock()
 #FPS = 60
 
 class GameRect(ABC):
     '''A very generic shape Rectangle'''
-                        #xpos, ypos, width, height, color
+    
     def __init__(self, xpos, ypos, width, height, color) -> None:
         self.xpos, self.ypos = xpos, ypos
         self.width = width
@@ -25,13 +30,10 @@ class GameRect(ABC):
         self.color = color
     
     def draw_rect(self):
-        #pyg.Rect()
-        self.rect = pyg.Rect(self.xpos, self.ypos, self.width, self.height)
-        self.rect.centerx = self.xpos
-        self.rect.centery = self.ypos
-        pyg.draw.rect(dsp, self.color, self.rect)
+        rect = pyg.Rect(self.xpos, self.ypos, self.width, self.height)
+        pyg.draw.rect(dsp, self.color, rect)
         
-        return self.rect
+        return rect
     
     @abstractmethod
     def draw(self):

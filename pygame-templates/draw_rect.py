@@ -22,8 +22,8 @@ def drawRect():
     rect = pyg.Rect(100, 100, 250,250)
     pyg.draw.rect(dsp, '#808080', rect )
     
-    rect = pyg.Rect(105, 105, 230,230)
-    pyg.draw.rect(dsp, '#C0C0C0', rect )
+    rect2 = pyg.Rect(105, 105, 230,230)
+    pyg.draw.rect(dsp, '#C0C0C0', rect2 )
     
 
 def game() -> None:
