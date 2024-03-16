@@ -3,6 +3,7 @@
 # I'm using 
 # https://www.youtube.com/watch?v=ZeCeEUF2J2c
 # as a basis for a very basic display setup and line/circle draw in in pygame
+from common import dsp
 
 import pygame as pyg
 
@@ -14,7 +15,12 @@ from abc import ABC, abstractmethod
 
 # Define an abstract class called Shape that has an abstract method called area
 
-
+BLACK: str = '#000000'
+SILVER: str = '#C0C0C0'
+BLACK: str = '#000000'
+GREY: str = '#808080'
+GREEN: str = '#008000'
+WHITE: str = 'FFFFFF'
 
 
 pyg.init()

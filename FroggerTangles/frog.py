@@ -1,7 +1,5 @@
 #import rectboilerplate
-import importlib
-module_name = "frogger_but_blocky"
-module = importlib.import_module(module_name)
+#from common import dsp
 
 from rectboilerplate import GameRect
 
@@ -12,7 +10,6 @@ from pygame.sprite import Sprite
 #SCREEN_WIDTH = 800
 #SCREEN_HEIGHT = 600
 #GREEN: str = '#008000'
-
 
 
 
