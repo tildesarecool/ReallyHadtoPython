@@ -6,15 +6,13 @@
 
 from common import dsp
 from common import SCREEN_WIDTH, SCREEN_HEIGHT
+from common import defineColors
+
+BLACK, SILVER, GREY, GREEN, WHITE, BLUEISH = defineColors()
+
 
 
 import pygame as pyg
-BLACK: str = '#000000'
-SILVER: str = '#C0C0C0'
-BLACK: str = '#000000'
-GREY: str = '#808080'
-GREEN: str = '#008000'
-WHITE: str = 'FFFFFF'
 
 
 #SCREEN_WIDTH = 800
@@ -33,11 +31,11 @@ pyg.init()
 center_x = SCREEN_WIDTH / 2
 center_y = SCREEN_HEIGHT / 2
 
-dsp = pyg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # also known as the "surface"
+#dsp = pyg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # also known as the "surface"
 clock = pyg.time.Clock()
 FPS = 60
 
-froggie = Frog(500,500,50,50,GREEN)
+froggie = Frog(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 55, 50, 50, GREEN)
 #frogger = Frog(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 10, 100,  100, GREEN)
 
 def game() -> None:
@@ -49,12 +47,15 @@ def game() -> None:
             elif event.type == pyg.KEYDOWN and event.key == pyg.K_q:
                 pyg.quit()
                 return
-        dsp.fill((10, 150, 240))
+        #dsp.fill((10, 150, 240))
+        dsp.fill(BLUEISH)
         #dsp.fill('#00000080')
 
 
- #       frogger.draw()
+        froggie.update()
+        
         froggie.draw()
+        
 
 
         pyg.display.flip()        
