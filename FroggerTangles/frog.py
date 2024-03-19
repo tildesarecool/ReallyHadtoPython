@@ -121,16 +121,16 @@ class Frog(GameRect, Sprite):
 ##################################################
 
         if self.moving_down:
-            print(f"Value of self.ypos_start is {self.ypos_start} ")
-            print(f"Value of self.ypos is {self.ypos} ")
+            #print(f"Value of self.ypos_start is {self.ypos_start} ")
+            #print(f"Value of self.ypos is {self.ypos} ")
             #if self.ypos <= SCREEN_HEIGHT + self.height:#self.ypos_start:
             if self.ypos <= self.ypos_start - 5:
                 self.ypos += 3
             elif self.rect.bottom >= self.ypos_start:
-                print(f"Value of self.ypos_start is {self.ypos_start} ")
+                #print(f"Value of self.ypos_start is {self.ypos_start} ")
                 #print(f"Value of self.ypos is {self.ypos} ")
-                print(f"Current y position is in else is {self.ypos}")
-                print(f"self.rect.bottom value is {self.rect.bottom}")
+                #print(f"Current y position is in else is {self.ypos}")
+                #print(f"self.rect.bottom value is {self.rect.bottom}")
                 #self.ypos = float(self.ypos_start - 5)
                 self.rect.bottom = float(self.ypos_start - 1)
                 #self.ypos = 5.0
