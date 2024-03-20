@@ -5,10 +5,13 @@
 #module_name = "frogger_but_blocky"
 #module = importlib.import_module(module_name)
 
-from common import dsp
+from common import Common
 
 from abc import ABC, abstractmethod
 import pygame as pyg
+
+cmn = Common()
+disp = cmn.screenInfo()
 
 #pyg.init()
 #SCREEN_WIDTH = 800
@@ -17,7 +20,7 @@ import pygame as pyg
 #center_x = SCREEN_WIDTH // 2
 #center_y = SCREEN_HEIGHT // 2
 
-BLACK: str = '#000000'
+#BLACK: str = '#000000'
 
 #dsp = pyg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  # also known as the "surface"
 #clock = pyg.time.Clock()
@@ -34,7 +37,7 @@ class GameRect(ABC):
     
     def draw_rect(self):
         rect = pyg.Rect(self.xpos, self.ypos, self.width, self.height)
-        pyg.draw.rect(dsp, self.color, rect)
+        pyg.draw.rect(disp, self.color, rect)
         
         return rect
     

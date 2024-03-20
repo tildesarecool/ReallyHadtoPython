@@ -7,7 +7,10 @@ import pygame as pyg
 
 from pygame.sprite import Sprite
 
-from common import SCREEN_WIDTH, SCREEN_HEIGHT
+from common import Common
+
+cmn = Common()
+
 #SCREEN_WIDTH = 800
 #SCREEN_HEIGHT = 600
 #GREEN: str = '#008000'
@@ -78,7 +81,7 @@ class Frog(GameRect, Sprite):
         if keys[pyg.K_s]:
             
             self.moving_down = True
-            print(f"screen height is {SCREEN_HEIGHT}")
+           # print(f"screen height is {cmn.SCREEN_HEIGHT}")
         else:
             self.moving_down = False
             
@@ -86,14 +89,14 @@ class Frog(GameRect, Sprite):
             
         if self.moving_right:
             
-            if self.xpos <= float(SCREEN_WIDTH - self.width):
+            if self.xpos <= float(cmn.SCREEN_WIDTH - self.width):
                 self.xpos += 3
                 #print(f"Current x position is {self.xpos}")
                 #print(f"Current rect right value is {self.rect.right}")
-            elif self.xpos >= float(SCREEN_WIDTH - self.width - 5):
+            elif self.xpos >= float(cmn.SCREEN_WIDTH - self.width - 5):
                 #print(f"Value of SCREEN_WIDTH - self.rect.width is {float(SCREEN_WIDTH - self.width)}")
                 #print(f"Current x position is in else is {self.xpos}")
-                self.xpos = float(SCREEN_WIDTH - self.width - 5)
+                self.xpos = float(cmn.SCREEN_WIDTH - self.width - 5)
 ##################################################
 
         if self.moving_left:
@@ -110,13 +113,21 @@ class Frog(GameRect, Sprite):
 ##################################################
 
         if self.moving_up:
+            if self.ypos >= 5:
+                self.ypos -= 3.0
+            elif self.ypos >= self.ypos_start:
+                self.ypos = self.ypos_start
+                print(f"Current ypos is {self.ypos}, rect top is {self.rect.top}")
 
-            #if self.ypos <= SCREEN_HEIGHT:
-            if self.ypos <= self.ypos_start:
-                self.ypos -= 3
 
-            elif self.rect.top <= 5.0:
-                self.ypos = 5.0
+#            if self.ypos <= self.ypos_start:
+#                self.ypos -= 3.0
+#                print(f"Current ypos is {self.ypos}, rect top is {self.rect.top}")
+
+#            elif self.ypos <= 2.0:
+#                print(f"self.ypos <= 2 value is true here, at {self.ypos}")
+                #self.ypos = 5
+#                self.ypos = 2.0
 
 ##################################################
 

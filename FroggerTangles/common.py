@@ -1,28 +1,37 @@
 import pygame as pyg
 pyg.init()
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+
 
 # Initialize pygame and create the display surface
 
-dsp = pyg.display.set_mode(
-        (
-            SCREEN_WIDTH, 
-            SCREEN_HEIGHT
-        )
-    )
 
 
-def defineColors():
-    BLACK: str = '#000000'
-    SILVER: str = '#C0C0C0'
-    BLACK: str = '#000000'
-    GREY: str = '#808080'
-    GREEN: str = '#008000'
-    WHITE: str = 'FFFFFF'
-    BLUEISH: str = (10, 150, 240)
-    
-    return BLACK, SILVER, GREY, GREEN, WHITE, BLUEISH
+
+class Common():
+    def __init__(self):
+
+        self.BLACK: str = '#000000'
+        self.SILVER: str = '#C0C0C0'
+        self.BLACK: str = '#000000'
+        self.GREY: str = '#808080'
+        self.GREEN: str = '#008000'
+        self.WHITE: str = 'FFFFFF'
+        self.BLUEISH: str = (10, 150, 240)
+        self.SCREEN_WIDTH = 800
+        self.SCREEN_HEIGHT = 600
+
+    def screenInfo(self):
+        self.dsp = pyg.display.set_mode(
+                (
+                    self.SCREEN_WIDTH, 
+                    self.SCREEN_HEIGHT
+                )
+            )
+        return self.dsp
+
+
+        
+
 
 
