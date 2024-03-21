@@ -31,6 +31,9 @@ class Frog(GameRect, Sprite):
         self.height = height
         self.color = color
         
+        self.move_amount = 7  # Amount to move at a time
+        self.move_counter = 0  # Counter to track movement
+        
         self.moving_left = False
         self.moving_right = False
         self.moving_up = False
@@ -68,6 +71,7 @@ class Frog(GameRect, Sprite):
             self.moving_right = False
 ##################################################
 
+
         keys = pyg.key.get_pressed()
         if keys[pyg.K_w]:
             self.moving_up = True
@@ -90,9 +94,8 @@ class Frog(GameRect, Sprite):
         if self.moving_right:
             
             if self.xpos <= float(cmn.SCREEN_WIDTH - self.width):
-                self.xpos += 3
-                #print(f"Current x position is {self.xpos}")
-                #print(f"Current rect right value is {self.rect.right}")
+                self.xpos += 7
+                
             elif self.xpos >= float(cmn.SCREEN_WIDTH - self.width - 5):
                 #print(f"Value of SCREEN_WIDTH - self.rect.width is {float(SCREEN_WIDTH - self.width)}")
                 #print(f"Current x position is in else is {self.xpos}")
@@ -102,7 +105,7 @@ class Frog(GameRect, Sprite):
         if self.moving_left:
             #self.xpos -= 3
             if self.xpos > 0:
-                self.xpos -= 3
+                self.xpos -= 7
                 #print(f"Current x position is {self.xpos}")
                 #print(f"Current rect right value is {self.rect.right}")
             elif self.xpos <= 5.0:
@@ -114,10 +117,14 @@ class Frog(GameRect, Sprite):
 
         if self.moving_up:
             if self.ypos >= 5:
-                self.ypos -= 3.0
+                #self.ypos -= 3.0
+                #self.ypos -= cmn.cellHeight
+                self.ypos -= 7.0
+                self.moving_up = False
             elif self.ypos >= self.ypos_start:
                 self.ypos = self.ypos_start
-                print(f"Current ypos is {self.ypos}, rect top is {self.rect.top}")
+                self.moving_up = False
+
 
 
 #            if self.ypos <= self.ypos_start:
@@ -136,7 +143,7 @@ class Frog(GameRect, Sprite):
             #print(f"Value of self.ypos is {self.ypos} ")
             #if self.ypos <= SCREEN_HEIGHT + self.height:#self.ypos_start:
             if self.ypos <= self.ypos_start - 5:
-                self.ypos += 3
+                self.ypos += 7
             elif self.rect.bottom >= self.ypos_start:
                 #print(f"Value of self.ypos_start is {self.ypos_start} ")
                 #print(f"Value of self.ypos is {self.ypos} ")
