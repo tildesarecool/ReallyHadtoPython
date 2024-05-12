@@ -1,6 +1,6 @@
 from main import *
 
-RUN = True
+RUN = False
 
 run_cases = [
     (
@@ -76,8 +76,8 @@ def main():
 
 
 test_cases = submit_cases
-#if "__RUN__" in globals():
-if RUN == True:
+if "__RUN__" in globals():
+#if RUN == True:
     test_cases = run_cases
 
 main()

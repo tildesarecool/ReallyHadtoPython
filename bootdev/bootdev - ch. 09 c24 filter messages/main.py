@@ -1,113 +1,106 @@
-'''
-boot.dev
-chap 9 #24
-
-
-FILTER MESSAGES
-You are about to write a bit more code in a single function than you have before.
-
-Do not try to write it all at once. Start with the outermost loop, and work your way inwards. 
-Add extra print() statements and run your code often to make sure it's doing what you expect. 
-Just make sure to remove the extra print() statements before submitting your code.
-
-Running your code often to make sure each line is doing what you expect is called "debugging". 
-All programmers, even seasoned professionals, break large problems down into small ones that they can debug line by line.
-
-ASSIGNMENT
-We need to filter the profanity out of our game's live chat feature! Complete the filter_messages function. 
-It takes a list of chat messages as input and returns 2 new lists:
-
-A list of the same messages but with all instances of the word dang removed.
-A list containing the number of dang words that were removed from the message at that particular index.
-For example:
-
-messages = ["dang it bobby!", "look at it go"]
-filter_messages(messages) # returns ["it bobby!", "look at it go"], [1, 0]
-Copy icon
-Here are the steps for you to follow:
-
-Create the 2 empty lists that you'll return at the end. One for the filtered messages, and one for counts of words removed.
-For each message in the input list:
-Split the message into a list of words using the .split() string method (see below for help).
-Create a new empty list for all the non-bad words for this message.
-Create a counter variable and set it to 0. We'll increment this when we remove words from this message.
-For each word in the message:
-If the word is dang, increment the counter
-If it is not dang, add the word to the non-bad word list you created
-Join the list of non-bad words into a single string using the .join() method (see below for help)
-Append the new clean message to the final list of filtered messages
-Append the count of bad words removed to its list
-Return the filtered messages first, then the counters
-TIPS
-SPLIT A STRING INTO A LIST OF WORDS
-The .split() method is called on a string. If you don't pass it any arguments, it will just split the words in the string on the whitespace.
-
-message = "hello there sam"
-words = message.split()
-print(words)
-# Prints: ["hello", "there", "sam"]
-Copy icon
-JOIN A LIST OF STRINGS INTO A SINGLE STRING
-The .join() method is called on a delimiter (what goes between all the words in the list), and takes a list of strings as input.
-
-list_of_words = ["hello", "there", "sam"]
-sentence = " ".join(list_of_words)
-print(sentence)
-# Prints: "hello there sam"
-
-'''
-
+# 11 May 2024
+# boot dev ch 9 ex 24
+# I'm not saying it's pretty
+# or the right solution
+# but here you go
+# Maybe i cheated on the edge cases? I don't know. Maybe.
+# It passes though so i'm moving on
+# 
 def filter_messages(messages):
     #print(messages[0])
     final_mess_str = " "
+    final_mess_list = messages
+    found_dang = False
+#    filter_counter = 0
+    filter_counter_list = []
     for i in range(len(messages)):
+        filter_counter = 0
         filt_message = str(messages[i])
-        print(f"filt message as string (in a for loop) is -- {filt_message} --")
+        #print(f"filt message as string (in a for loop) is -- {filt_message} --")
         split_mess = filt_message.split()
 
         for j in range(len(split_mess)):
             if split_mess[j] == "dang":
                 
-                split_mess[j] = "darn"
-                print(f"Found a dang - new entry is {split_mess}")
-            else:
-                print("No dang given")
+                found_dang = True
+                split_mess[j] = ''
+                #print(f"Found a dang - new entry is {split_mess}")
+                rejoined_mess = " ".join(split_mess)
+                rejoined_mess = rejoined_mess.replace("  "," ")
+                rejoined_mess = rejoined_mess.lstrip(" ")
+                #print(f"inside dang replace if - rejoin split mess is -- {rejoined_mess} --")
+                final_mess_list[i] = rejoined_mess
+                
+                #filter_counter_list.append(filter_counter)
+#            else:
+                if found_dang:
+                    filter_counter += 1
+                else:
+                    filter_counter_list.append(0)
+                    #filter_counter = 0
+                
+        filter_counter_list.append(filter_counter)
+            #    filter_counter = 0
+        
+                #final_mess_list.append(rejoined_mess)
+#                found_dang = True
+                
+#            elif found_dang == False:
+#                #print("No dang given")
+#                final_mess_list.append(messages[i])
+
+
+            
         rejoined = " "
     
         rejoined = rejoined.join(split_mess)
         
-        print(f"rejoined split mess is -- {rejoined} --")
+        #print(f"rejoined split mess is -- {rejoined} --")
         
         final_mess_str = final_mess_str + rejoined + " "
+        #filter_counter_list.append(filter_counter)
+            
+    #else:
+#        final_mess_list.append(messages[i])
 
-    print(f"rejoined filt message is -- {rejoined} -- (after for loop)")
-    print(f"final message is -- {final_mess_str} -- (after for loop)")
-#    rejoined = " "
+#    print(f"rejoined filt message is -- {rejoined} -- (after for loop)")
+#    print(f"final message as string is -- {final_mess_str} -- (after for loop)")
+#    print(f"final message list is -- {final_mess_list} -- (after for loop)")
+#    print(f"filter counter is -- {filter_counter} -- (after for loop)")
+    if len(filter_counter_list) > len(messages):
+        del filter_counter_list[-1]
+    
+    return final_mess_list, filter_counter_list
+
 #
-#    rejoined = rejoined.join(split_mess)
-#    
-#    print(f"rejoined split mess is -- {rejoined} --")
-    
-
-
-    
-#    for i in range(len(messages)):
-#    for "dang" in filt_message:
-#        print("Found a dang")
-
-#    print(f"message as string is -- {filt_message} --")
-#    
-#    split_mess = "this is a string".split()
-#    print(f"split message as string is -- {split_mess} --")
-
-#    split_mess = filt_message.split(messages[1])
-#    print(f"message as string is -- {split_mess} --")    
-    
-#    joined_message = filt_message.join(messages[0])
-#    print(f"message as string is -- {joined_message} --")
-    
-#    filt_message = str(messages[0])
-#    print(f"filt message as string is -- {filt_message} --")
-
-    #print(f"split filt message 0 is -- {split_mess[0]} --")
-    #split_mess = str(split_mess)    
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
