@@ -4,11 +4,12 @@
 # really seems like this shouldn't be so hard
 # but i'm still working on it
 # 
+# the below works
+# i think i did it worng but it works
+# so leave me alone
 # 
 # 
-# 
-# 
-# 
+
 
 def double_string(string):
 
@@ -21,7 +22,7 @@ def double_string(string):
         doubled_it = i + i
         double_it = str(double_it)
         #print(f"type of double it is --{type(doubled_it}--")
-        print(f"double it is --{doubled_it}--")
+        #print(f"double it is --{doubled_it}--")
         newly_doubled_list.append(i + i)
         
 
@@ -31,14 +32,23 @@ def double_string(string):
         #print(f"newly_doubled_string is --{newly_doubled_string + i}--")
 
         #doubled_string
-        
-    print(f"newly doubled it list is --{newly_doubled_list}--")
+    first_word: str = ''
+#    print(f"newly doubled it list is --{newly_doubled_list}--")
     #print(f"double string is --{doubled_string}--")
 
     for i in range(len(newly_doubled_list)):
+        i_str = str(i)
+        first_word += str(newly_doubled_list[int(i_str)])
         
-        first_word = str(newly_doubled_list[i])
         
-        
-        print(f"first word is --{first_word}--")
+#        print(f"first word is --{first_word}--")
+
+    comb_string = newly_doubled_list
+    comb_string = str([newly_doubled_list[0] + newly_doubled_list[1] ])
+    
+#    print(f"combstring 0 --{comb_string}--")
+
+
+    return first_word
+
 
